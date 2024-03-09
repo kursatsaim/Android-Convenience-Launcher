@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="MPLauncher2"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HelpMe"
+        tools:targetApi="31">
+        <activity
+            android:name=".MomChooseAppsLayout"
+            android:exported="false" />
+        <activity
+            android:name=".passwordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PopoutWindow"
+            android:exported="false" />
+        <activity
+            android:name=".Dad"
+            android:exported="false"
+            android:label="@string/title_activity_dad"
+            android:theme="@style/Theme.HelpMe" />
+        <activity
+            android:name=".Mom"
+            android:exported="false"
+            android:label="@string/title_activity_mom"
+            android:theme="@style/Theme.HelpMe" />
+        <activity
+            android:name=".ChildGirl"
+            android:exported="false"
+            android:label="@string/title_activity_child_girl"
+            android:theme="@style/Theme.HelpMe" />
+        <activity
+            android:name=".ChildBoy"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
