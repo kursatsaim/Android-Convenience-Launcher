@@ -31,6 +31,7 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
     Context context;
     List<PicsAndAppNames> picsAndAppNames;
     GirlAppsList girlAppsList;
+    int a = 0,CurrentPosition,ViewAmount;
 
     public RAdapter(Context context, List<PicsAndAppNames> picsAndAppNames) {
         this.context = context;
@@ -59,35 +60,76 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
     @Override
     public RAdapter.Holderz onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.row, parent, false);
-        Holderz holderz = new Holderz(view);
-        return holderz;
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            View view = inflater.inflate(R.layout.row, parent, false);
+            Holderz holderz = new Holderz(view);
+            return holderz;
+            //CTRL+ ALT + SHIFT + F7
+
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull RAdapter.Holderz holder, int position)
     {
+        position = position + a;
+        if( position < picsAndAppNames.size() && position % 3 == 0) {
+            holder.textView.setText(picsAndAppNames.get(position).yazi);
+            holder.img.setImageDrawable(picsAndAppNames.get(position).resim);
+            position++;
+
+        }
+        if( position < picsAndAppNames.size() && position % 3 == 1) {
+            holder.textView2.setText(picsAndAppNames.get(position).yazi);
+            holder.img2.setImageDrawable(picsAndAppNames.get(position).resim);
+            position++;
+
+        }
+        if( position < picsAndAppNames.size() && position % 3 == 2) {
+            holder.textView3.setText(picsAndAppNames.get(position).yazi);
+            holder.img3.setImageDrawable(picsAndAppNames.get(position).resim);
+
+        }
+        else
+        {
+
+        }
+        a = a + 2;
+        CurrentPosition = position;
+        /*String x = picsAndAppNames.get(position).yazi;
         holder.textView.setText(picsAndAppNames.get(position).yazi);
         holder.img.setImageDrawable(picsAndAppNames.get(position).resim);
+        holder.textView2.setText(picsAndAppNames.get(position).yazi);
+        holder.img2.setImageDrawable(picsAndAppNames.get(position).resim);
+        holder.textView3.setText(picsAndAppNames.get(position).yazi);
+        holder.img3.setImageDrawable(picsAndAppNames.get(position).resim);*/
+
     }
 
     @Override
     public int getItemCount() {
-        return applist.size();
+
+        if(applist.size() % 3 != 0)
+            ViewAmount = applist.size() / 3 + 1;
+        else
+            ViewAmount =applist.size()/3;
+        return ViewAmount;
     }
     public class Holderz extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public ConstraintLayout row;
-        public ImageView img;
-        public TextView textView;
+        public ImageView img,img2,img3;
+        public TextView textView,textView2,textView3;
         public Holderz(@NonNull View itemView) {
             super(itemView);
 
             row =      itemView.findViewById(R.id.a_row);
             img =      itemView.findViewById(R.id.img);
+            img2=      itemView.findViewById(R.id.img2);
+            img3=      itemView.findViewById(R.id.img3);
             textView = itemView.findViewById(R.id.popoutText);
+            textView2 = itemView.findViewById(R.id.popoutText2);
+            textView3 = itemView.findViewById(R.id.popoutText3);
             itemView.setOnClickListener(this);
         }
 
@@ -96,7 +138,7 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
 
             int pos = getAdapterPosition();
             Context context1 = view.getContext();
-            Intent basla = context1.getPackageManager().getLaunchIntentForPackage(applist.get(pos));
+            Intent basla = context1.getPackageManager().getLaunchIntentForPackage(applist.get(CurrentPosition-1));
             context1.startActivity(basla);
 
         }

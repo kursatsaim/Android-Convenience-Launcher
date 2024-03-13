@@ -7,17 +7,62 @@
     android:layout_height="wrap_content">
 
 
+    <ImageView
+        android:id="@+id/img3"
+        android:layout_width="89dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logo_chrome"
+        app:layout_constraintStart_toEndOf="@+id/img2"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/popoutText"
-        android:layout_width="325dp"
-        android:layout_height="84dp"
+        android:id="@+id/popoutText3"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+
+        android:layout_marginStart="75dp"
         android:text="TextView"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/popoutText2"
+        app:layout_constraintTop_toBottomOf="@+id/img3" />
+
+    <ImageView
+        android:id="@+id/img2"
+        android:layout_width="89dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logo_chrome"
         app:layout_constraintStart_toEndOf="@+id/img"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/popoutText2"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="75dp"
+        android:text="TextView"
+
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/popoutText"
+        app:layout_constraintTop_toBottomOf="@+id/img2" />
+
+    <TextView
+        android:id="@+id/popoutText"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img" />
 
     <ImageView
         android:id="@+id/img"
@@ -26,5 +71,6 @@
         android:src="@drawable/logo_chrome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.297" />
 </androidx.constraintlayout.widget.ConstraintLayout>

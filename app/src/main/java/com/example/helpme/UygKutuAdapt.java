@@ -89,7 +89,7 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
             uygismi  = itemView.findViewById(R.id.uygkutuisim);
             uygresim = itemView.findViewById(R.id.uygkutusimge);
             uygresim . setOnClickListener(this);
-            uygisimler = itemView.findViewById(R.id.uygisimliste);
+            //uygisimler = itemView.findViewById(R.id.uygisimliste);
 
         }
 
