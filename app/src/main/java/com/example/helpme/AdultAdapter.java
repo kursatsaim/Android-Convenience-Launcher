@@ -40,6 +40,7 @@ public class AdultAdapter extends RecyclerView.Adapter<AdultAdapter.Holderz> {
             applist.add(ri.activityInfo.packageName);
         }
 
+
         burdadasil("com.google.android.googlequicksearchbox");
 
     }

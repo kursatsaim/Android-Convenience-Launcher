@@ -48,6 +48,8 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
             Stringapplist.add(ri.activityInfo.packageName);
         }
 
+        burdadasil("com.google.android.googlequicksearchbox");
+
     }
 
     @NonNull
@@ -115,7 +117,7 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
 
                     //girlAppsList.AddGirlApps(packageName);
                     girlAppsList.AddStringRealGirlAppList(StringpackageName);
-                    //nbr
+                    //nbr iisndn
 
                 }
 
@@ -125,6 +127,19 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
 
 
 
+        }
+    }
+    public void burdadasil (String burdakisilincek)
+    {
+        for(String s : Stringapplist)
+        {
+            if(s.equals(burdakisilincek))
+            {
+                int x = Stringapplist.indexOf(burdakisilincek);
+                applist.remove(x);
+                Stringapplist.remove(x);
+                break;
+            }
         }
     }
 }

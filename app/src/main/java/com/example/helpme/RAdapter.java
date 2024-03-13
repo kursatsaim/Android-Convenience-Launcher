@@ -130,17 +130,46 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
             textView = itemView.findViewById(R.id.popoutText);
             textView2 = itemView.findViewById(R.id.popoutText2);
             textView3 = itemView.findViewById(R.id.popoutText3);
-            itemView.setOnClickListener(this);
+            img.setOnClickListener(this);
+            img2.setOnClickListener(this);
+            img3.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-
-            int pos = getAdapterPosition();
+            int AdapterPosition = getAdapterPosition();
+            if(view == img)
+            {
+                int FirstApp = (AdapterPosition * 3);
+                Context context1 = view.getContext();
+                Intent basla = context1.getPackageManager().getLaunchIntentForPackage(applist.get(FirstApp));
+                context1.startActivity(basla);
+            }
+            else if(view == img2)
+            {
+                int SecondApp = (AdapterPosition * 3) + 1;
+                if(SecondApp < applist.size()) {
+                    Context context1 = view.getContext();
+                    Intent basla = context1.getPackageManager().getLaunchIntentForPackage(applist.get(SecondApp));
+                    context1.startActivity(basla);
+                }
+            }
+            else if(view == img3)
+                {
+                    int ThirdApp = (AdapterPosition * 3) + 2;
+                    if(ThirdApp < applist.size()) {
+                        Context context1 = view.getContext();
+                        Intent basla = context1.getPackageManager().getLaunchIntentForPackage(applist.get(ThirdApp));
+                        context1.startActivity(basla);
+                    }
+                }
+            /*int a = 3;
+            int pos = getLayoutPosition();
+            int x = getAdapterPosition();
+            int r = getItemCount();
             Context context1 = view.getContext();
             Intent basla = context1.getPackageManager().getLaunchIntentForPackage(applist.get(CurrentPosition-1));
-            context1.startActivity(basla);
-
+            context1.startActivity(basla);*/
         }
     }
 
