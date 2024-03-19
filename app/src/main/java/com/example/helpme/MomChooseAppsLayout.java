@@ -48,7 +48,6 @@ public class MomChooseAppsLayout extends AppCompatActivity {
         girlAppsList = new GirlAppsList(this);
         childGirl = new ChildGirl();
 
-
         launchableApps = getLaunchableApps();
 
         sil("com.google.android.googlequicksearchbox");
@@ -89,11 +88,9 @@ public class MomChooseAppsLayout extends AppCompatActivity {
 
         }
 
-
         UygKutuAdapt adapt = new UygKutuAdapt(this,mainliste,girlAppsList);
         recyclerView.setAdapter(adapt);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
         LoadSharedPrefs();
         girlAppsList.GetChosenApps(chosenapps);
@@ -161,9 +158,6 @@ public class MomChooseAppsLayout extends AppCompatActivity {
         {
             chosenapps = new ArrayList<String>();
         }
-
-
-
 
     }
 

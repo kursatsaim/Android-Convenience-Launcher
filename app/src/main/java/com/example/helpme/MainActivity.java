@@ -1,20 +1,39 @@
 package com.example.helpme;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
+import androidx.recyclerview.widget.RecyclerView;
+import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Bundle;
+import android.util.Log;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.squareup.picasso.Picasso;
+import org.json.JSONObject;
+import java.net.URL;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private Button kızbuton;
     private Button erkekbuton;
     private Button bababuton;
-    private Button annebuton;
+    private Button annebuton,btVar1;
+    private TextView textView;
+    private ImageView imageView;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private String WeatherIcon;
+    GirlAppsList girlAppsList;
+    WeatherData weatherData;
 
 
 
@@ -23,8 +42,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getPermission();
 
-
+        btVar1 = (Button) findViewById(R.id.btVar1);
+        btVar1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                weatherData = new WeatherData();
+                weatherData.obtainLocation();
+            }
+        });
 
         kızbuton = (Button) findViewById(R.id.goChildGirl);
 
@@ -35,10 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
 
         erkekbuton = (Button) findViewById(R.id.goChildBoy);
 
@@ -51,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         annebuton = (Button) findViewById(R.id.goMother);
-
         annebuton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,15 +91,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
 
-public void OpenGirlAct(){
-    Intent intent = new Intent(this, ChildGirl.class);
-    startActivity(intent);
+    public void OpenGirlAct(){
+        Intent intent = new Intent(this, ChildGirl.class);
+        startActivity(intent);
 }
 
     public void OpenBoyAct(){
@@ -110,6 +128,13 @@ public void OpenGirlAct(){
         startActivity(intent);
     }
 
+    public void getPermission() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+        }
+    }
 
 
 }
