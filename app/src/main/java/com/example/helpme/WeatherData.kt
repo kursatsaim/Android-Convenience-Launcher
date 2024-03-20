@@ -10,10 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.squareup.picasso.Picasso
@@ -25,7 +21,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.net.URL
 
-open class WeatherData {
+ class WeatherData {
     var weather_url1 = ""
     var api_id1 = "5c3bfa42d9f14a848463d7bbefa9b8bf"
     var desc = ""
@@ -42,7 +38,7 @@ open class WeatherData {
 
     constructor()
     {
-        obtainLocation()
+
     }
 
 
