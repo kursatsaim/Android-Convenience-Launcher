@@ -15,41 +15,51 @@ import com.google.android.gms.location.LocationServices
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 //import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.net.URL
+import java.util.Observer
 
- class WeatherDatas {
+class WeatherData {
     var weather_url1 = ""
-    var api_id1 = "5c3bfa42d9f14a848463d7bbefa9b8bf"
-    var desc = ""
+    var api_id1 = "KEY"
+    var desc = "aaa" // Initial value (can be removed if not needed)
     var icon = ""
-    constructor()
-    {
+    private val _dataObservers = ArrayList<() -> Unit>() // List of lambdas for updates
+
+    constructor(desc: String, icon: String) {
+        this.desc = desc
+        this.icon = icon
+    }
+
+    constructor() {
 
     }
 
+    constructor(desc: String) {
+        this.desc = desc
+    }
 
+    fun observeData(observer: () -> Unit) { // Lambda with no argument
+        _dataObservers.add(observer)
+    }
     @SuppressLint("MissingPermission")
-     fun obtainLocation(fusedLocationProviderClient: FusedLocationProviderClient) {
+    fun obtainLocation(fusedLocationProviderClient: FusedLocationProviderClient, weatherData: WeatherData) {
         Log.e("lat", "function")
-        // get the last location
-        //zzbi@12099
         fusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 var lat = location?.latitude
                 var lon = location?.longitude
                 var apiUrl = "https://api.weatherapi.com/v1/current.json?key=578847f6544d4d9a968122116241803&q="+ lat + "," + lon + "&aqi=yes&lang=tr"
                 CoroutineScope(Dispatchers.Main).launch {
-                    getTemp(apiUrl)
+                    weatherData.getTemp(apiUrl) // Call getTemp on the passed instance
                 }
             }
     }
 
-    suspend fun getTemp( apiUrl: String) {
+    suspend fun getTemp(apiUrl: String) {
         val response = withContext(Dispatchers.IO) {
             URL(apiUrl).readText()
         }
@@ -59,18 +69,10 @@ import java.net.URL
         val weatherDescription = json.getJSONObject("current").getJSONObject("condition").getString("text")
         val weatherIcon = json.getJSONObject("current").getJSONObject("condition").getString("icon")
         val WeatherInfo = loca + "\n" + weatherDescription
-        //desc = WeatherInfo
-        RecieveDesc(WeatherInfo)
+        desc = WeatherInfo
         icon = "https:" + weatherIcon
 
+        // Notify observers about the data change
+        _dataObservers.forEach { it() } // Call each lambda in the list
     }
-     fun RecieveDesc(nbr: String) {
-         desc = nbr
-     }
-
-     fun gettDesc(): String {
-         return this.desc
-     }
-
-
- }
+}

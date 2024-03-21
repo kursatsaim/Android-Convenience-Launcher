@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import com.example.helpme.WeatherData;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 import java.net.URL;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.Observer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -22,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import kotlin.Unit;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,12 +37,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private FusedLocationProviderClient fusedLocationProviderClient;
     String WeatherIcon;
-    String WeatherDescription;
-    String WeatherDescriptionn;
+    public String WeatherDescription;
     GirlAppsList girlAppsList;
-    WeatherData weatherData, weatherData2;
+    WeatherData weatherData;
+
 
     public MainActivity() {
+
     }
 
 
@@ -49,12 +53,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getPermission();
         textView = (TextView) findViewById(R.id.textView);
-        weatherData = new WeatherData();
-        WeatherDescription = new String();
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        weatherData.obtainLocation(fusedLocationProviderClient);
-        WeatherDescription = weatherData.gettDesc();
-        textView.setText(WeatherDescription);
+        weatherData = new WeatherData();
+
+        weatherData.obtainLocation(fusedLocationProviderClient, weatherData);
+
+        // Observer implementation to update UI
+        weatherData.observeData(() -> {
+            textView.setText(weatherData.getDesc());
+            return Unit.INSTANCE;
+        });
         /*weatherData2 = new WeatherData("desc","icon");
         WeatherIcon = weatherData2.getIcon();
         WeatherDescription = weatherData2.getDesc();*/
