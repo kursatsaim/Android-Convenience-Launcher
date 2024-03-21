@@ -13,6 +13,8 @@ import com.google.android.gms.location.LocationServices;
 import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
 import java.net.URL;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -31,11 +33,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private ImageView imageView;
     private FusedLocationProviderClient fusedLocationProviderClient;
-    private String WeatherIcon;
+    String WeatherIcon;
+    String WeatherDescription;
+    String WeatherDescriptionn;
     GirlAppsList girlAppsList;
-    WeatherData weatherData;
+    WeatherData weatherData, weatherData2;
 
-
+    public MainActivity() {
+    }
 
 
     @Override
@@ -43,13 +48,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getPermission();
+        textView = (TextView) findViewById(R.id.textView);
         weatherData = new WeatherData();
+        WeatherDescription = new String();
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        weatherData.obtainLocation(fusedLocationProviderClient);
+        WeatherDescription = weatherData.gettDesc();
+        textView.setText(WeatherDescription);
+        /*weatherData2 = new WeatherData("desc","icon");
+        WeatherIcon = weatherData2.getIcon();
+        WeatherDescription = weatherData2.getDesc();*/
 
         btVar1 = (Button) findViewById(R.id.btVar1);
         btVar1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                weatherData.obtainLocation();
+
             }
         });
 
@@ -135,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
 
 }

@@ -15,6 +15,7 @@ import com.google.android.gms.location.LocationServices
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 //import kotlinx.android.synthetic.main.activity_main.*
@@ -25,16 +26,20 @@ import java.net.URL
     var weather_url1 = ""
     var api_id1 = "5c3bfa42d9f14a848463d7bbefa9b8bf"
     var desc = ""
-    var icon = ""
+    //var icon = ""
+    //lateinit var desc: String
+    lateinit var icon: String
     private lateinit var textView: TextView
     private lateinit var btVar1: Button
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var usedLocationClient: FusedLocationProviderClient
     private lateinit var imageView: ImageView
 
     constructor(desc: String, icon: String) {
         this.desc = desc
         this.icon = icon
+
     }
+
 
     constructor()
     {
@@ -43,17 +48,17 @@ import java.net.URL
 
 
     @SuppressLint("MissingPermission")
-     fun obtainLocation() {
+     fun obtainLocation(fusedLocationProviderClient: FusedLocationProviderClient) {
         Log.e("lat", "function")
         // get the last location
-        fusedLocationClient.lastLocation
+        //zzbi@12099
+        fusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 var lat = location?.latitude
                 var lon = location?.longitude
                 var apiUrl = "https://api.weatherapi.com/v1/current.json?key=578847f6544d4d9a968122116241803&q="+ lat + "," + lon + "&aqi=yes&lang=tr"
                 CoroutineScope(Dispatchers.Main).launch {
                     getTemp(apiUrl)
-
                 }
             }
     }
@@ -68,9 +73,18 @@ import java.net.URL
         val weatherDescription = json.getJSONObject("current").getJSONObject("condition").getString("text")
         val weatherIcon = json.getJSONObject("current").getJSONObject("condition").getString("icon")
         val WeatherInfo = loca + "\n" + weatherDescription
-        desc = WeatherInfo
-        icon = weatherIcon
+        //desc = WeatherInfo
+        RecieveDesc(WeatherInfo)
+        icon = "https:" + weatherIcon
 
     }
+     fun RecieveDesc(nbr: String) {
+         desc = nbr
+     }
 
-}
+     fun gettDesc(): String {
+         return this.desc
+     }
+
+
+ }
