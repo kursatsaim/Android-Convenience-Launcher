@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Button kızbuton;
     private Button erkekbuton;
     private Button bababuton;
-    private Button annebuton,btVar1;
+    private Button annebuton;
     private TextView textView;
     private ImageView imageView;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getPermission();
         textView = (TextView) findViewById(R.id.textView);
+        imageView = (ImageView) findViewById(R.id.imageView);
+
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         weatherData = new WeatherData();
@@ -62,19 +64,15 @@ public class MainActivity extends AppCompatActivity {
         // Observer implementation to update UI
         weatherData.observeData(() -> {
             textView.setText(weatherData.getDesc());
+            Picasso.get().load(weatherData.getIcon()).into(imageView);
             return Unit.INSTANCE;
         });
+
         /*weatherData2 = new WeatherData("desc","icon");
         WeatherIcon = weatherData2.getIcon();
         WeatherDescription = weatherData2.getDesc();*/
 
-        btVar1 = (Button) findViewById(R.id.btVar1);
-        btVar1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
 
         kızbuton = (Button) findViewById(R.id.goChildGirl);
 

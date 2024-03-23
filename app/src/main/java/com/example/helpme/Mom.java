@@ -1,10 +1,14 @@
 package com.example.helpme;
 
+import static com.example.helpme.MomChooseAppsLayout.KEY_STRING_REAL_GIRL_APP_LIST;
+import static com.example.helpme.MomChooseAppsLayout.SHARED_PREF;
+
 import android.app.AppOpsManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -24,6 +28,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +57,7 @@ public class Mom extends AppCompatActivity {
     String kullan;
 
     String[] istediklerim;
-
+    public ArrayList<String> kızuyg;
 
 
 
@@ -59,7 +67,7 @@ public class Mom extends AppCompatActivity {
         setContentView(R.layout.activity_mom);
 
         checkperm();
-
+        LoadSharedPrefs();
 
 
         getzaman();
@@ -220,35 +228,18 @@ public class Mom extends AppCompatActivity {
         istediklerim = new String[] {"com.android.settings", "com.android.deskclock", "com.google.android.calculator"};
         kullan = "";
         PackageManager packageManager = getPackageManager();
-//        for (int i = 0; i < zamanliste.size(); i++)
-//        {
-//            try {
-//                ApplicationInfo applicationInfo = packageManager.getApplicationInfo(zamanliste.get(i).getPackageName(), 0);
-//
-//
-//                String uygulamaAdi = (String) packageManager.getApplicationLabel(applicationInfo);
-//                kullan = kullan + "Uygulama ismi: " + uygulamaAdi + "\n" +
-//                        "Son kullanılan tarih: " + zamanal(zamanliste.get(i).getLastTimeUsed()) + "\n" +
-//                        "Toplam geçirilen vakit:" + zamanal2(zamanliste.get(i).getTotalTimeInForeground()) + "\n";
-//            }
-//            catch (PackageManager.NameNotFoundException e)
-//            {
-//                continue;
-//            }
-//
-//        }
 
         for(int i = 0; i < zamanliste.size();i++)
         {
             UsageStats usageStats = zamanliste.get(i);
             String paket = usageStats.getPackageName();
-            if(Arrays.asList(istediklerim).contains(paket))
+            if(kızuyg.contains(paket))
             {
                 try {
                     ApplicationInfo applicationInfo = packageManager.getApplicationInfo(paket,0);
                     String uygulamalar = (String) packageManager.getApplicationLabel(applicationInfo);
                     kullan = kullan + "Uygulama ismi: " + uygulamalar + "\nŞu tarihten beri: " +
-                            zamanal(usageStats.getLastTimeUsed()) + "\nŞu kadar saat: " + zamanal2(usageStats.getTotalTimeInForeground());
+                    zamanal(usageStats.getLastTimeUsed()) + "\nŞu kadar saat: " + zamanal2(usageStats.getTotalTimeInForeground()) + "\n";
                 } catch (PackageManager.NameNotFoundException e) {
                     continue;
                 }
@@ -257,7 +248,6 @@ public class Mom extends AppCompatActivity {
         }
 
 
-        //uyglist.setText(kullan);
     }
 
     private String zamanal(Long lastTimeUsed) {
@@ -273,6 +263,20 @@ public class Mom extends AppCompatActivity {
     }
 
 
+
+    public void LoadSharedPrefs()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(KEY_STRING_REAL_GIRL_APP_LIST,null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
+        kızuyg = gson.fromJson(json,type);
+        if(kızuyg == null)
+        {
+            kızuyg = new ArrayList<String>();
+        }
+    }
 
 
 

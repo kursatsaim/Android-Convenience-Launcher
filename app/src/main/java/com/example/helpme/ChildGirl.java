@@ -49,7 +49,6 @@ public class ChildGirl extends AppCompatActivity {
     String[] uyglist;
     GirlAppsList kızınuyglarr;
     public ArrayList<String> kızuyg;
-    String s;
     PackageManager packageManager;
     private ImageView GetVoiceButton;
     private SpeechRecognizer speechRecognizer;
@@ -129,30 +128,6 @@ public class ChildGirl extends AppCompatActivity {
         });
     }
 
-    private List<ApplicationInfo> getLaunchableApps() {
-        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-        List<ResolveInfo> activities = getPackageManager().queryIntentActivities(mainIntent, 0);
-
-        List<ApplicationInfo> launchableApps = new ArrayList<>();
-
-        for (ResolveInfo resolveInfo : activities) {
-            launchableApps.add(resolveInfo.activityInfo.applicationInfo);
-        }
-
-        return launchableApps;
-    }
-
-    public void sil (String silincekuyg)
-    {
-        for (ApplicationInfo appInfo : launchableApps) {
-            if (appInfo.packageName.equals(silincekuyg)) {
-                launchableApps.remove(appInfo);
-                break;
-            }
-        }
-    }
 
     public void getchildgirlapps(ArrayList<String> arrayList)
     {

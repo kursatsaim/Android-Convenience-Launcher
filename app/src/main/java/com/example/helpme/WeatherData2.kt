@@ -27,6 +27,7 @@ class WeatherData {
     var api_id1 = "KEY"
     var desc = "aaa" // Initial value (can be removed if not needed)
     var icon = ""
+    var temp: Int =  4353435
     private val _dataObservers = ArrayList<() -> Unit>() // List of lambdas for updates
 
     constructor(desc: String, icon: String) {
@@ -45,6 +46,8 @@ class WeatherData {
     fun observeData(observer: () -> Unit) { // Lambda with no argument
         _dataObservers.add(observer)
     }
+
+
     @SuppressLint("MissingPermission")
     fun obtainLocation(fusedLocationProviderClient: FusedLocationProviderClient, weatherData: WeatherData) {
         Log.e("lat", "function")
@@ -68,9 +71,12 @@ class WeatherData {
         val loca = json.getJSONObject("location").getString("name")
         val weatherDescription = json.getJSONObject("current").getJSONObject("condition").getString("text")
         val weatherIcon = json.getJSONObject("current").getJSONObject("condition").getString("icon")
-        val WeatherInfo = loca + "\n" + weatherDescription
+        val weatherTemp = json.getJSONObject("current").getInt("temp_c")
+        val WeatherInfo = loca + "\n" + weatherDescription + "\n" + weatherTemp + "° Derece"
         desc = WeatherInfo
         icon = "https:" + weatherIcon
+        temp = weatherTemp
+
 
         // Notify observers about the data change
         _dataObservers.forEach { it() } // Call each lambda in the list

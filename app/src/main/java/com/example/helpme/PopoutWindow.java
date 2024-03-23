@@ -1,23 +1,16 @@
 package com.example.helpme;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
-import android.app.AppOpsManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,11 +23,6 @@ public class PopoutWindow extends AppCompatActivity {
 
     public String kullan;
 
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +31,7 @@ public class PopoutWindow extends AppCompatActivity {
         uyglist = findViewById(R.id.popoutTextpopout);
 
         getzaman();
+        uyglist.setText("bruh");
 
         //popupyaz();
     }
@@ -67,23 +56,7 @@ public class PopoutWindow extends AppCompatActivity {
         String[] istediklerim = new String[] {"com.android.settings", "com.android.deskclock", "com.google.android.calculator"};
         kullan = "";
         PackageManager packageManager = getPackageManager();
-//        for (int i = 0; i < zamanliste.size(); i++)
-//        {
-//            try {
-//                ApplicationInfo applicationInfo = packageManager.getApplicationInfo(zamanliste.get(i).getPackageName(), 0);
-//
-//
-//                String uygulamaAdi = (String) packageManager.getApplicationLabel(applicationInfo);
-//                kullan = kullan + "Uygulama ismi: " + uygulamaAdi + "\n" +
-//                        "Son kullanılan tarih: " + zamanal(zamanliste.get(i).getLastTimeUsed()) + "\n" +
-//                        "Toplam geçirilen vakit:" + zamanal2(zamanliste.get(i).getTotalTimeInForeground()) + "\n";
-//            }
-//            catch (PackageManager.NameNotFoundException e)
-//            {
-//                continue;
-//            }
-//
-//        }
+
 
         for(int i = 0; i < zamanliste.size();i++)
         {
@@ -119,5 +92,7 @@ public class PopoutWindow extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.ENGLISH);
         return  simpleDateFormat.format(date);
     }
+
+
 
 }
