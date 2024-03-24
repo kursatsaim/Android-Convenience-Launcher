@@ -4,8 +4,8 @@ import android.graphics.drawable.Drawable;
 
 public class PicsAndAppNames {
 
-    Drawable resim, resim2,resim3;
-    String yazi,yazi2,yazi3;
+    Drawable resim;
+    String yazi;
 
     public Drawable getResim() {
         return resim;
@@ -17,11 +17,7 @@ public class PicsAndAppNames {
 
     public PicsAndAppNames(Drawable resim,  String yazi) {
         this.resim = resim;
-        //this.resim2 = resim2;
-        //this.resim3 = resim3;
         this.yazi = yazi;
-        //this.yazi2 = yazi2;
-        //this.yazi3 = yazi3;
     }
 }
 

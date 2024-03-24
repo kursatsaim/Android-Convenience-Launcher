@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,12 +25,38 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
     Context context;
     List<PicsAndAppNames> picsAndAppNames;
     GirlAppsList girlAppsList;
+    BoyAppsList boyAppsList;
+    public int GirlOrBoy = 0;
 
 
     public UygKutuAdapt(Context context, List<PicsAndAppNames> picsAndAppNames, GirlAppsList girlAppsList) {
         this.context = context;
         this.picsAndAppNames = picsAndAppNames;
         this.girlAppsList = girlAppsList;
+
+
+        PackageManager packageManager = context.getPackageManager();
+        applist = new ArrayList<ApplicationInfo>();
+        Stringapplist = new ArrayList<String>();
+
+        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        List<ResolveInfo> allApps = packageManager.queryIntentActivities(intent, 0);
+        for(ResolveInfo ri:allApps)
+        {
+            applist.add(ri.activityInfo.applicationInfo);
+            Stringapplist.add(ri.activityInfo.packageName);
+        }
+
+        burdadasil("com.google.android.googlequicksearchbox");
+
+    }
+
+    public UygKutuAdapt(Context context, List<PicsAndAppNames> picsAndAppNames, BoyAppsList boyAppsList) {
+        this.context = context;
+        this.picsAndAppNames = picsAndAppNames;
+        this.boyAppsList = boyAppsList;
 
 
         PackageManager packageManager = context.getPackageManager();
@@ -77,11 +102,15 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
         return applist.size();
     }
 
+    public void setGirlOrBoy(int girlOrBoy) {
+        this.GirlOrBoy = girlOrBoy;
+    }
+
 
     public class Holderz extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         public ConstraintLayout kutu;
-        public TextView uygismi,uygisimler;
+        public TextView uygismi;
         public ImageView uygresim;
 
         public Holderz(@NonNull View itemView) {
@@ -91,40 +120,32 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
             uygismi  = itemView.findViewById(R.id.uygkutuisim);
             uygresim = itemView.findViewById(R.id.uygkutusimge);
             uygresim . setOnClickListener(this);
-            //uygisimler = itemView.findViewById(R.id.uygisimliste);
 
         }
 
         @Override
         public void onClick(View view) {
 
-                int position = getAdapterPosition();
-
-                ApplicationInfo packageName = applist.get(position);
+            int position = getAdapterPosition();
+            ApplicationInfo packageName = applist.get(position);
+            String StringpackageName = Stringapplist.get(position);
+            if(GirlOrBoy == 0) {
                 ArrayList<String> secilenuyglar = new ArrayList<>(girlAppsList.GetGirlApplist());
-                String StringpackageName = Stringapplist.get(position);
-
-
-                if(secilenuyglar.contains(StringpackageName)) {
+                if (secilenuyglar.contains(StringpackageName)) {
                     girlAppsList.RemoveStringRealGirlAppList(StringpackageName);
-                    //girlAppsList.KızUygÇıkar(packageName);
-                    //girlAppsList.RemoveStringRealGirlAppList(StringpackageName);
-
-                }
-                else
-
-                {
-
-                    //girlAppsList.AddGirlApps(packageName);
+                } else {
                     girlAppsList.AddStringRealGirlAppList(StringpackageName);
-                    //nbr iisndn
-
                 }
+            }
 
-                /*ArrayList<String> Stringsecilenuyglarr = new ArrayList<>(girlAppsList.getStringRealGirlAppList());
-                String isimler = String.join("\n", Stringsecilenuyglarr);
-                Toast.makeText(context, isimler, Toast.LENGTH_SHORT).show();*/
-
+            else if (GirlOrBoy == 1) {
+                ArrayList<String> secilenuyglar = new ArrayList<>(boyAppsList.GetBoyApplist());
+                if (secilenuyglar.contains(StringpackageName)) {
+                    boyAppsList.RemoveStringRealBoyAppList(StringpackageName);
+                } else {
+                    boyAppsList.AddStringRealBoyAppList(StringpackageName);
+                }
+            }
 
 
         }

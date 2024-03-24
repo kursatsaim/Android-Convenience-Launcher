@@ -22,8 +22,8 @@
         android:id="@+id/goChildGirl"
         android:layout_width="113dp"
         android:layout_height="65dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="108dp"
         android:text="Kız Çocuk"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,8 +32,8 @@
         android:id="@+id/goChildBoy"
         android:layout_width="113dp"
         android:layout_height="65dp"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="108dp"
         android:text="Erkek Çocuk"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,8 +42,8 @@
         android:id="@+id/goMother"
         android:layout_width="113dp"
         android:layout_height="65dp"
-        android:layout_marginStart="240dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginStart="244dp"
+        android:layout_marginTop="252dp"
         android:text="Anne"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,8 +52,8 @@
         android:id="@+id/goDad"
         android:layout_width="113dp"
         android:layout_height="65dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="252dp"
         android:text="Baba"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +63,7 @@
         android:layout_width="244dp"
         android:layout_height="129dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="152dp"
         android:fontFamily="sans-serif-black"
         android:text=""
         android:textColor="#F6F8F5"
@@ -80,10 +80,22 @@
         android:layout_height="93dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/seffaf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goMother" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/GirlEditAppsButtonFrag"
+        android:name="com.example.helpme.Default_Frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="65dp" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

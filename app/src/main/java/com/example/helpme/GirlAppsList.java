@@ -43,7 +43,7 @@ public class GirlAppsList {
         StringRealGirlAppList.remove(çıkarılcak);
     }
 
-    public ArrayList<ApplicationInfo> GetGirlApps()
+    /*public ArrayList<ApplicationInfo> GetGirlApps()
     {
         return RealGirlAppList;
     }
@@ -67,7 +67,7 @@ public class GirlAppsList {
         {
             RealGirlAppList.remove(applicationInfo);
         }
-    }
+    }*/
 
 
 

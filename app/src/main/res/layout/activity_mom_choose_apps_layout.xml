@@ -5,7 +5,7 @@
     android:id="@+id/momchooselayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/volviecompletepng"
+    android:background="@drawable/lakeview"
     tools:context=".MomChooseAppsLayout">
 
     <androidx.recyclerview.widget.RecyclerView

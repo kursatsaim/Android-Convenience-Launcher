@@ -7,13 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link GirlButtonLongPressFragment#newInstance} factory method to
+ * Use the {@link BoyButtonLongPressFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GirlButtonLongPressFragment extends Fragment {
+public class BoyButtonLongPressFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,8 +24,9 @@ public class GirlButtonLongPressFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+     Button button;
 
-    public GirlButtonLongPressFragment() {
+    public BoyButtonLongPressFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class GirlButtonLongPressFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GirlButtonLongPressFragment.
+     * @return A new instance of fragment BoyButtonLongPressFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GirlButtonLongPressFragment newInstance(String param1, String param2) {
-        GirlButtonLongPressFragment fragment = new GirlButtonLongPressFragment();
+    public static BoyButtonLongPressFragment newInstance(String param1, String param2) {
+        BoyButtonLongPressFragment fragment = new BoyButtonLongPressFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,7 +60,15 @@ public class GirlButtonLongPressFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_boy_button_long_press, container, false);
+        button = view.findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_girl_button_long_press, container, false);
+        return view;
     }
 }

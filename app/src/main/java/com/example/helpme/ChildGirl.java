@@ -47,7 +47,6 @@ public class ChildGirl extends AppCompatActivity {
     List<String> isimler = new ArrayList<>();
 
     String[] uyglist;
-    GirlAppsList kızınuyglarr;
     public ArrayList<String> kızuyg;
     PackageManager packageManager;
     private ImageView GetVoiceButton;

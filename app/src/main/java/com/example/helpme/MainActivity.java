@@ -2,28 +2,24 @@ package com.example.helpme;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.recyclerview.widget.RecyclerView;
-import android.annotation.SuppressLint;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+
+import android.content.Context;
 import android.content.pm.PackageManager;
-import com.example.helpme.WeatherData;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.squareup.picasso.Picasso;
-import org.json.JSONObject;
-import java.net.URL;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-import java.util.Observer;
+
 import android.content.Intent;
-import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import kotlin.Unit;
 
 
@@ -40,11 +36,13 @@ public class MainActivity extends AppCompatActivity {
     public String WeatherDescription;
     GirlAppsList girlAppsList;
     WeatherData weatherData;
+    FragmentContainerView fragmentContainerViewGirl;
+    Context context;
+    UygKutuAdapt uygKutuAdapt;
 
 
-    public MainActivity() {
 
-    }
+
 
 
     @Override
@@ -54,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         getPermission();
         textView = (TextView) findViewById(R.id.textView);
         imageView = (ImageView) findViewById(R.id.imageView);
+        fragmentContainerViewGirl = findViewById(R.id.GirlEditAppsButtonFrag);
+        int girlCheck = 0;
+
+
 
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -68,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
             return Unit.INSTANCE;
         });
 
+        FragmentManager karen = getSupportFragmentManager();
+
+        karen.beginTransaction()
+                .replace(R.id.GirlEditAppsButtonFrag, Default_Frag.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
         /*weatherData2 = new WeatherData("desc","icon");
         WeatherIcon = weatherData2.getIcon();
         WeatherDescription = weatherData2.getDesc();*/
@@ -75,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         kızbuton = (Button) findViewById(R.id.goChildGirl);
+
+        kızbuton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                OpenGirlFrag();
+                return true;
+            }
+        });
 
         kızbuton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         erkekbuton = (Button) findViewById(R.id.goChildBoy);
+
+        erkekbuton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                uygKutuAdapt.setGirlOrBoy(1);
+                return true;
+            }
+        });
 
         erkekbuton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +143,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChildGirl.class);
         startActivity(intent);
 }
+    public void OpenGirlFrag(){
+        //fragmentContainerViewGirl.setSystemUiVisibility(0);
+        FragmentManager karen = getSupportFragmentManager();
 
+        karen.beginTransaction()
+                .replace(R.id.GirlEditAppsButtonFrag, GirlButtonLongPressFrag.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+
+}
     public void OpenBoyAct(){
         Intent intent = new Intent(this, ChildBoy.class);
         startActivity(intent);

@@ -19,20 +19,18 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MomChooseAppsLayout extends AppCompatActivity {
-
+public class MomChooseAppsForBoy extends AppCompatActivity{
     List<PicsAndAppNames> mainliste = new ArrayList<>();
     List<ApplicationInfo> launchableApps;
     List<Drawable> icons = new ArrayList<>();
     List<String> isimler = new ArrayList<>();
     String[] uyglist;
-    GirlAppsList girlAppsList;
+    BoyAppsList boyAppsList;
     ArrayList<String> chosenapps;
-    public static final String SHARED_PREF = "GirlAppsListPrefs";
-    public static final String KEY_STRING_REAL_GIRL_APP_LIST = "KeyRealGirlAppList";
-    SharedPreferences prefs;
+    public static final String SHARED_PREF_BOY = "BoyAppsListPrefs";
+    public static final String KEY_STRING_REAL_BOY_APP_LIST = "KeyRealBoyAppList";
     String json;
-    ChildGirl childGirl;
+    ChildBoy childBoy;
 
 
 
@@ -41,8 +39,8 @@ public class MomChooseAppsLayout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mom_choose_apps_layout);
 
-        girlAppsList = new GirlAppsList(this);
-        childGirl = new ChildGirl();
+        boyAppsList = new BoyAppsList(this);
+        childBoy = new ChildBoy();
 
         launchableApps = getLaunchableApps();
 
@@ -84,20 +82,14 @@ public class MomChooseAppsLayout extends AppCompatActivity {
 
         }
 
-        UygKutuAdapt adapt = new UygKutuAdapt(this,mainliste,girlAppsList);
+        UygKutuAdapt adapt = new UygKutuAdapt(this,mainliste,boyAppsList);
         recyclerView.setAdapter(adapt);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         LoadSharedPrefs();
-        girlAppsList.GetChosenApps(chosenapps);
-        childGirl.getchildgirlapps(chosenapps);
+        boyAppsList.GetChosenApps(chosenapps);
+        childBoy.getchildboyapps(chosenapps);
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SaveSharedPrefs();
     }
 
     private List<ApplicationInfo> getLaunchableApps() {
@@ -128,8 +120,8 @@ public class MomChooseAppsLayout extends AppCompatActivity {
     public void SaveSharedPrefs()
     {
         chosenapps = new ArrayList<String>();
-        chosenapps = girlAppsList.GetGirlApplist();
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE);
+        chosenapps = boyAppsList.GetBoyApplist();
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_BOY,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =sharedPreferences.edit();
 
         if(chosenapps.size() > 0 ) {
@@ -137,7 +129,7 @@ public class MomChooseAppsLayout extends AppCompatActivity {
             Gson gson = new Gson();
             json = gson.toJson(chosenapps);
             int x = 3;
-            editor.putString(KEY_STRING_REAL_GIRL_APP_LIST, json);
+            editor.putString(KEY_STRING_REAL_BOY_APP_LIST, json);
             editor.apply();
         }
     }
@@ -145,9 +137,9 @@ public class MomChooseAppsLayout extends AppCompatActivity {
     public void LoadSharedPrefs()
     {
 
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_BOY,Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString(KEY_STRING_REAL_GIRL_APP_LIST,"");
+        String json = sharedPreferences.getString(KEY_STRING_REAL_BOY_APP_LIST,"");
         Type type = new TypeToken<ArrayList<String>>() {}.getType();
         chosenapps = gson.fromJson(json,type);
         if(chosenapps == null)
@@ -156,5 +148,20 @@ public class MomChooseAppsLayout extends AppCompatActivity {
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
