@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import kotlin.Unit;
 
@@ -54,22 +57,19 @@ public class MainActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.imageView);
         fragmentContainerViewGirl = findViewById(R.id.GirlEditAppsButtonFrag);
 
-        int girlCheck = 0;
+        if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && isNetworkAvailable()) {
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+            weatherData = new WeatherData();
 
+            weatherData.obtainLocation(fusedLocationProviderClient, weatherData);
 
+            weatherData.observeData(() -> {
+                textView.setText(weatherData.getDesc());
+                Picasso.get().load(weatherData.getIcon()).into(imageView);
+                return Unit.INSTANCE;
+            });
+        }
 
-
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        weatherData = new WeatherData();
-
-        weatherData.obtainLocation(fusedLocationProviderClient, weatherData);
-
-        // Observer implementation to update UI
-        weatherData.observeData(() -> {
-            textView.setText(weatherData.getDesc());
-            Picasso.get().load(weatherData.getIcon()).into(imageView);
-            return Unit.INSTANCE;
-        });
 
         FragmentManager karen = getSupportFragmentManager();
 
@@ -78,11 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
-        /*weatherData2 = new WeatherData("desc","icon");
-        WeatherIcon = weatherData2.getIcon();
-        WeatherDescription = weatherData2.getDesc();*/
-
-
 
         kızbuton = (Button) findViewById(R.id.goChildGirl);
 
@@ -200,9 +195,16 @@ public class MainActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                Toast.makeText(this,"In order to access weather forcast please restart the app.",Toast.LENGTH_SHORT).show();
             }
         }
     }
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 
 
 

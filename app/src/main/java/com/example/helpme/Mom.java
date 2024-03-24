@@ -58,6 +58,7 @@ public class Mom extends AppCompatActivity {
 
     String[] istediklerim;
     public ArrayList<String> kızuyg;
+    ArrayList<String> CheckForDupes;
 
 
 
@@ -69,14 +70,15 @@ public class Mom extends AppCompatActivity {
         checkperm();
         LoadSharedPrefs();
 
-
+        launchableApps = getLaunchableApps();
         getzaman();
+
 
         pop();
 
 
 
-        launchableApps = getLaunchableApps();
+
 
         sil("com.google.android.googlequicksearchbox");
 
@@ -229,30 +231,33 @@ public class Mom extends AppCompatActivity {
         kullan = "";
         PackageManager packageManager = getPackageManager();
 
-        for(int i = 0; i < zamanliste.size();i++)
+        for(int i = 0; i < launchableApps.size();i++)
         {
             UsageStats usageStats = zamanliste.get(i);
             String paket = usageStats.getPackageName();
             if(kızuyg.contains(paket))
             {
+
                 try {
-                    ApplicationInfo applicationInfo = packageManager.getApplicationInfo(paket,0);
+                    int index = zamanliste.indexOf(usageStats);
+                    ApplicationInfo applicationInfo = packageManager.getApplicationInfo(paket,index);
                     String uygulamalar = (String) packageManager.getApplicationLabel(applicationInfo);
                     kullan = kullan + "Uygulama ismi: " + uygulamalar + "\nŞu tarihten beri: " +
-                    zamanal(usageStats.getLastTimeUsed()) + "\nŞu kadar saat: " + zamanal2(usageStats.getTotalTimeInForeground()) + "\n";
+                    zamanal(usageStats.getLastTimeUsed()) + "\nŞu kadar toplam kullanım: " + zamanal2(usageStats.getTotalTimeInForeground()) + "\n\n";
+
                 } catch (PackageManager.NameNotFoundException e) {
                     continue;
                 }
             }
 
         }
-
+        int x = 3;
 
     }
 
     private String zamanal(Long lastTimeUsed) {
         Date date = new Date(lastTimeUsed);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM,yyyy hh:mm a", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM,yyyy HH:mm", Locale.ENGLISH);
         return  simpleDateFormat.format(date);
     }
 

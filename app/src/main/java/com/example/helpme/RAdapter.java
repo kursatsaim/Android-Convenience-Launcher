@@ -35,7 +35,7 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
     List<PicsAndAppNames> picsAndAppNames;
     GirlAppsList girlAppsList;
     BoyAppsList boyAppsList;
-    ChildBoy childBoy;
+    ChildBoy childBoy = new ChildBoy();
     int a = 0,CurrentPosition,ViewAmount;
 
     public RAdapter(Context context, List<PicsAndAppNames> picsAndAppNames) {
@@ -44,9 +44,8 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
         boyAppsList = new BoyAppsList(context);
         girlAppsList = new GirlAppsList(context);
         PackageManager pm = context.getPackageManager();
-        childBoy = new ChildBoy();
 
-        if(context == childBoy.getContext())
+        if(context.getClass() == childBoy.getContext().getClass())
         {
             LoadSharedPrefsBoy();
         }

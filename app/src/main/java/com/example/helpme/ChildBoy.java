@@ -94,6 +94,7 @@ public class ChildBoy extends AppCompatActivity {
         {
             ApplicationInfo applicationInfo = launchableApps.get(i);
             Drawable drawable = applicationInfo.loadIcon(getPackageManager());
+            //Drawable drawable = applicationInfo.loadUnbadgedIcon(getPackageManager());
             icons.add(drawable);
         }
 
@@ -111,7 +112,7 @@ public class ChildBoy extends AppCompatActivity {
         }
 
 
-
+        context = this;
         RAdapter adapt = new RAdapter(this,mainliste);
         recyclerView.setAdapter(adapt);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -149,6 +150,6 @@ public class ChildBoy extends AppCompatActivity {
     }
 
     public Context getContext() {
-        return context;
+        return this;
     }
 }
