@@ -92,6 +92,11 @@ public class MomChooseAppsForBoy extends AppCompatActivity{
 
     }
 
+    protected void onDestroy() {
+        super.onDestroy();
+        SaveSharedPrefs();
+    }
+
     private List<ApplicationInfo> getLaunchableApps() {
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -125,10 +130,8 @@ public class MomChooseAppsForBoy extends AppCompatActivity{
         SharedPreferences.Editor editor =sharedPreferences.edit();
 
         if(chosenapps.size() > 0 ) {
-            //chosenapps.clear();
             Gson gson = new Gson();
             json = gson.toJson(chosenapps);
-            int x = 3;
             editor.putString(KEY_STRING_REAL_BOY_APP_LIST, json);
             editor.apply();
         }

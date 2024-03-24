@@ -77,6 +77,9 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
 
     }
 
+    public UygKutuAdapt() {
+    }
+
     @NonNull
     @Override
     public Holderz onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -102,9 +105,7 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
         return applist.size();
     }
 
-    public void setGirlOrBoy(int girlOrBoy) {
-        this.GirlOrBoy = girlOrBoy;
-    }
+
 
 
     public class Holderz extends RecyclerView.ViewHolder implements View.OnClickListener
@@ -129,16 +130,15 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
             int position = getAdapterPosition();
             ApplicationInfo packageName = applist.get(position);
             String StringpackageName = Stringapplist.get(position);
-            if(GirlOrBoy == 0) {
-                ArrayList<String> secilenuyglar = new ArrayList<>(girlAppsList.GetGirlApplist());
-                if (secilenuyglar.contains(StringpackageName)) {
-                    girlAppsList.RemoveStringRealGirlAppList(StringpackageName);
-                } else {
-                    girlAppsList.AddStringRealGirlAppList(StringpackageName);
-                }
-            }
+            try {
 
-            else if (GirlOrBoy == 1) {
+                    ArrayList<String> secilenuyglar = new ArrayList<>(girlAppsList.GetGirlApplist());
+                    if (secilenuyglar.contains(StringpackageName)) {
+                        girlAppsList.RemoveStringRealGirlAppList(StringpackageName);
+                    } else {
+                        girlAppsList.AddStringRealGirlAppList(StringpackageName);
+                }
+            } catch (NullPointerException e) {
                 ArrayList<String> secilenuyglar = new ArrayList<>(boyAppsList.GetBoyApplist());
                 if (secilenuyglar.contains(StringpackageName)) {
                     boyAppsList.RemoveStringRealBoyAppList(StringpackageName);
@@ -146,6 +146,11 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
                     boyAppsList.AddStringRealBoyAppList(StringpackageName);
                 }
             }
+
+
+
+
+
 
 
         }

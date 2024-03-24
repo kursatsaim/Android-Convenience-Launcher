@@ -37,7 +37,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 public class ChildBoy extends AppCompatActivity {
+
+    @Inject
+    Context context;
 
     List<PicsAndAppNames> mainliste = new ArrayList<>();
 
@@ -49,6 +54,9 @@ public class ChildBoy extends AppCompatActivity {
     String[] uyglist;
     public ArrayList<String> boyuyg;
     PackageManager packageManager;
+
+    public ChildBoy() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,4 +148,7 @@ public class ChildBoy extends AppCompatActivity {
         }
     }
 
+    public Context getContext() {
+        return context;
+    }
 }

@@ -97,7 +97,7 @@ public class MomChooseAppsLayout extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SaveSharedPrefs();
+        SaveSharedPrefss();
     }
 
     private List<ApplicationInfo> getLaunchableApps() {
@@ -125,7 +125,7 @@ public class MomChooseAppsLayout extends AppCompatActivity {
         }
     }
 
-    public void SaveSharedPrefs()
+    public void SaveSharedPrefss()
     {
         chosenapps = new ArrayList<String>();
         chosenapps = girlAppsList.GetGirlApplist();

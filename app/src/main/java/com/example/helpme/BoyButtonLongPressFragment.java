@@ -1,5 +1,6 @@
 package com.example.helpme;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,8 @@ public class BoyButtonLongPressFragment extends Fragment {
     private String mParam1;
     private String mParam2;
      Button button;
+    UygKutuAdapt uygKutuAdapt;
+
 
     public BoyButtonLongPressFragment() {
         // Required empty public constructor
@@ -62,10 +65,15 @@ public class BoyButtonLongPressFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_boy_button_long_press, container, false);
         button = view.findViewById(R.id.button);
+        uygKutuAdapt = new UygKutuAdapt();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), MomChooseAppsForBoy.class);
+                startActivity(intent);
+                if (getActivity()!= null) {
+                    getFragmentManager().popBackStackImmediate();
+                }
             }
         });
         // Inflate the layout for this fragment

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     WeatherData weatherData;
     FragmentContainerView fragmentContainerViewGirl;
     Context context;
-    UygKutuAdapt uygKutuAdapt;
+
 
 
 
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.textView);
         imageView = (ImageView) findViewById(R.id.imageView);
         fragmentContainerViewGirl = findViewById(R.id.GirlEditAppsButtonFrag);
+
         int girlCheck = 0;
 
 
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         erkekbuton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                uygKutuAdapt.setGirlOrBoy(1);
+                OpenBoyFrag();
                 return true;
             }
         });
@@ -159,13 +160,24 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 }
 
+    public void OpenBoyFrag(){
+        FragmentManager karen = getSupportFragmentManager();
+
+        karen.beginTransaction()
+                .replace(R.id.GirlEditAppsButtonFrag, BoyButtonLongPressFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+
+    }
+
     public void OpenMomAct(){
         Intent intent = new Intent(this, Mom.class);
         startActivity(intent);
 }
 
     public void OpenDadAct(){
-        Intent intent = new Intent(this, passwordActivity.class);
+        Intent intent = new Intent(this,Dad.class);
         startActivity(intent);
 }
     public void onChromeButtonClick(View v) {

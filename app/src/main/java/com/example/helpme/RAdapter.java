@@ -29,22 +29,30 @@ import java.util.List;
 
 public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
 
-    @Inject
-    Context context;
+
     ArrayList<String> applist;
     Context context;
     List<PicsAndAppNames> picsAndAppNames;
     GirlAppsList girlAppsList;
     BoyAppsList boyAppsList;
+    ChildBoy childBoy;
     int a = 0,CurrentPosition,ViewAmount;
 
     public RAdapter(Context context, List<PicsAndAppNames> picsAndAppNames) {
         this.context = context;
         this.picsAndAppNames = picsAndAppNames;
+        boyAppsList = new BoyAppsList(context);
         girlAppsList = new GirlAppsList(context);
-
         PackageManager pm = context.getPackageManager();
-        LoadSharedPrefs();
+        childBoy = new ChildBoy();
+
+        if(context == childBoy.getContext())
+        {
+            LoadSharedPrefsBoy();
+        }
+        else {
+            LoadSharedPrefs();
+        }
         
     }
 
@@ -179,9 +187,9 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
 
     public void LoadSharedPrefsBoy()
     {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_BOY,Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString(KEY_STRING_REAL_GIRL_APP_LIST,null);
+        String json = sharedPreferences.getString(KEY_STRING_REAL_BOY_APP_LIST,null);
         Type type = new TypeToken<ArrayList<String>>() {}.getType();
 
         applist = gson.fromJson(json,type);

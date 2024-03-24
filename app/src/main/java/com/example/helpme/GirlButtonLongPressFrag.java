@@ -25,6 +25,7 @@ public class GirlButtonLongPressFrag extends Fragment{
     Button button;
     private String mParam1;
     private String mParam2;
+    UygKutuAdapt uygKutuAdapt;
 
     public GirlButtonLongPressFrag() {
         // Required empty public constructor
@@ -62,13 +63,13 @@ public class GirlButtonLongPressFrag extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_girl_button_long_press, container, false);
         button = view.findViewById(R.id.button);
+        uygKutuAdapt = new UygKutuAdapt();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MomChooseAppsLayout.class);
                 startActivity(intent);
                 if (getActivity() != null) {
-                    // Aktivite hala mevcutsa fragment'ı kapat
                     getFragmentManager().popBackStackImmediate();
                 }
             }

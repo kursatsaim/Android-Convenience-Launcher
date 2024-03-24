@@ -26,6 +26,7 @@
         <activity
             android:name=".MomChooseAppsLayout"
             android:exported="false" />
+        <activity android:name=".MomChooseAppsForBoy"/>
         <activity
             android:name=".passwordActivity"
             android:exported="false" />
