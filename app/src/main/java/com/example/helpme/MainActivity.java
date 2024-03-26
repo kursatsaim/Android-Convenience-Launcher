@@ -20,6 +20,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Button annebuton;
     private TextView textView;
     private ImageView imageView;
+    private TextClock textClock;
     private FusedLocationProviderClient fusedLocationProviderClient;
     String WeatherIcon;
     public String WeatherDescription;
@@ -133,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        textClock = findViewById(R.id.textClock2);
+        textClock.getFormat24Hour();
     }
 
     public void OpenGirlAct(){
