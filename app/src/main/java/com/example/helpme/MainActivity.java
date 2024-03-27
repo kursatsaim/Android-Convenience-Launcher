@@ -19,10 +19,14 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import kotlin.Unit;
 
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextClock textClock;
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private TextView dateText;
     String WeatherIcon;
     public String WeatherDescription;
     GirlAppsList girlAppsList;
@@ -138,6 +143,12 @@ public class MainActivity extends AppCompatActivity {
 
         textClock = findViewById(R.id.textClock2);
         textClock.getFormat24Hour();
+
+        dateText = findViewById(R.id.editTextDate);
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        String currentDate = simpleDateFormat.format(calendar.getTime());
+        dateText.setText(currentDate);
     }
 
     public void OpenGirlAct(){
