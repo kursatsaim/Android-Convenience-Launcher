@@ -74,7 +74,7 @@
         android:layout_width="244dp"
         android:layout_height="129dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="160dp"
         android:fontFamily="sans-serif-black"
         android:text=""
         android:textColor="#F6F8F5"
@@ -91,8 +91,8 @@
         android:layout_height="93dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="24dp"
         android:src="@drawable/seffaf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goMother" />
@@ -118,6 +118,16 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/GirlEditAppsButtonFrag" />
+
+    <Button
+        android:id="@+id/startFaceRecog"
+        android:layout_width="136dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="126dp"
+        android:layout_marginTop="34dp"
+        android:text="Yüz kilidini çalıştır"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goMother" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
