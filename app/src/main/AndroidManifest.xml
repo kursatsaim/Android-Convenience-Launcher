@@ -9,10 +9,11 @@
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -25,9 +26,12 @@
         android:theme="@style/Theme.HelpMe"
         tools:targetApi="31">
         <activity
+            android:name=".FaceRecognition"
+            android:exported="false" />
+        <activity
             android:name=".MomChooseAppsLayout"
             android:exported="false" />
-        <activity android:name=".MomChooseAppsForBoy"/>
+        <activity android:name=".MomChooseAppsForBoy" />
         <activity
             android:name=".passwordActivity"
             android:exported="false" />

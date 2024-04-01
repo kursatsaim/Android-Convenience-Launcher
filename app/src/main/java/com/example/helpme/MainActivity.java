@@ -2,6 +2,8 @@ package com.example.helpme;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
@@ -11,6 +13,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import com.example.helpme.FaceRecognition;
+import com.example.helpme.MyObserver2;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.squareup.picasso.Picasso;
@@ -19,34 +24,46 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Objects;
+import java.util.Observable;
+import java.util.Observer;
 
 import kotlin.Unit;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
     private Button kızbuton;
     private Button erkekbuton;
     private Button bababuton;
     private Button annebuton;
+    private Button faceRecogButton;
     private TextView textView;
     private ImageView imageView;
+    private TextClock textClock;
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private TextView dateText;
     String WeatherIcon;
-    public String WeatherDescription;
+    public String WeatherDescription,DadFaceName;
     GirlAppsList girlAppsList;
     WeatherData weatherData;
     FragmentContainerView fragmentContainerViewGirl;
     Context context;
-
-
-
-
-
-
+    private FaceRecognition faceRecognition;
+    Intent intentDad;
+    public String x;
+    private String CurrentUser = "";
+    private List<MyObserver2> observerz = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +72,20 @@ public class MainActivity extends AppCompatActivity {
         getPermission();
         textView = (TextView) findViewById(R.id.textView);
         imageView = (ImageView) findViewById(R.id.imageView);
+        faceRecogButton = findViewById(R.id.startFaceRecog);
         fragmentContainerViewGirl = findViewById(R.id.GirlEditAppsButtonFrag);
+
+       /* MyObserver observer = new MyObserver() {
+            @Override
+            public void onUpdate(String newName) {
+                // UserName2 değişkeni değiştiğinde bu fonksiyon tetiklenir
+                CurrentUser = newName;
+                // UI'ınızı güncelleyin
+                TextView textView = findViewById(R.id.textView);
+                textView.setText(CurrentUser);
+            }
+        };*/
+
 
         if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && isNetworkAvailable()) {
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -129,10 +159,35 @@ public class MainActivity extends AppCompatActivity {
         bababuton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 OpenDadAct();
+
 
             }
         });
+
+        faceRecogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenFaceRecog();
+            }
+        });
+
+        textClock = findViewById(R.id.textClock2);
+        textClock.getFormat24Hour();
+
+        dateText = findViewById(R.id.editTextDate);
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        String currentDate = simpleDateFormat.format(calendar.getTime());
+        dateText.setText(currentDate);
+
+        //faceRecognition = new FaceRecognition();
+        //faceRecognition.addObserver(this);
+    }
+    @Override
+    public void onUpdate(String name) { // "MyObserver" yerine "MyObserver2" yazın
+        x = name;
     }
 
     public void OpenGirlAct(){
@@ -195,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                Toast.makeText(this,"In order to access weather forcast please restart the app.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"In order to access weather forcast please restart the app.",Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -205,7 +260,29 @@ public class MainActivity extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+    public void OpenFaceRecog()
+    {
+        Intent intent = new Intent(this, FaceRecognition.class);
+
+        startActivity(intent);
+    }
+
+    public void OpenFamilyActivity(String name)
+    {
+        intentDad = new Intent(this,Dad.class);
+        if (Objects.equals(name, "baba"))
+        {
+            startActivity(intentDad);
+        }
+    }
 
 
-
+    /*@Override
+    public void update(MyObservable observable, String name) {
+        if (observable instanceof FaceRecognition) {
+            if (name.equals("baba")) {
+                Toast.makeText(MainActivity.this, "Oldu beeee!", Toast.LENGTH_LONG).show();
+            }
+        }
+    }*/
 }
