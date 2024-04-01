@@ -9,6 +9,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="LightRed">#E34E4E</color>
-    <color name="LightGreen">#FF6BCD40</color>
+    <color name="button_background">#FF5722</color> <!-- buton arka plan rengi -->
+    <color name="button_text">#FFFFFF</color> <!-- buton metin rengi -->
+
 </resources>
