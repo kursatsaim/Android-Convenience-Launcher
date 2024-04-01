@@ -12,72 +12,76 @@
         android:id="@+id/textClock2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="16dp"
-        android:textSize="70sp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:textSize="85sp"
         android:textStyle="bold"
+        android:textColor="#FF5733"
+        android:fontFamily="casual"
         app:layout_constraintStart_toStartOf="@+id/GirlEditAppsButtonFrag"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/quickie"
-        android:layout_width="153dp"
-        android:layout_height="90dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:onClick="QuickAç"
-        android:text="Ananı Aç"
-        android:visibility="gone"
+        android:background="@drawable/settings"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="300dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/goMother"
-        android:layout_width="113dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="236dp"
-        android:layout_marginTop="348dp"
-        android:text="Anne"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/sport"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/goChildGirl"
-        android:layout_width="113dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="204dp"
-        android:text="Kız Çocuk"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="175dp"
+        android:background="@drawable/study"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/goChildBoy"
-        android:layout_width="113dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="236dp"
-        android:layout_marginTop="204dp"
-        android:text="Erkek Çocuk"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="175dp"
+        android:background="@drawable/gaming"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/goDad"
-        android:layout_width="113dp"
-        android:layout_height="65dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="348dp"
-        android:text="Baba"
+        android:layout_marginTop="275dp"
+        android:background="@drawable/social"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="244dp"
-        android:layout_height="129dp"
+        android:layout_width="250dp"
+        android:layout_height="130dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="160dp"
-        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="140dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="sans-serif-medium"
         android:text=""
-        android:textColor="#F6F8F5"
+        android:textColor="#55C0FC"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,15 +91,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="125dp"
-        android:layout_height="93dp"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="10dp"
         android:src="@drawable/seffaf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goMother" />
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/GirlEditAppsButtonFrag"
@@ -108,26 +113,24 @@
 
     <TextView
         android:id="@+id/editTextDate"
-        android:layout_width="210dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="108dp"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:textColor="@color/white"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/GirlEditAppsButtonFrag" />
 
     <Button
         android:id="@+id/startFaceRecog"
-        android:layout_width="136dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="126dp"
-        android:layout_marginTop="34dp"
-        android:text="Yüz kilidini çalıştır"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/facerec"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goMother" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
