@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.helpme"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.helpme"
@@ -60,6 +60,7 @@ dependencies {
     implementation ("org.tensorflow:tensorflow-lite-support:0.3.0")
     implementation ("org.tensorflow:tensorflow-lite:0.0.0-nightly-SNAPSHOT")
     implementation("com.google.dagger:hilt-android:2.51")
+    implementation("androidx.activity:activity:1.8.0")
     annotationProcessor("com.google.dagger:hilt-android-compiler:2.51")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
