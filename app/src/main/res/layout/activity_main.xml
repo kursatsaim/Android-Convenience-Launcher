@@ -12,7 +12,7 @@
         android:id="@+id/textClock2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="20dp"
         android:textSize="85sp"
         android:textStyle="bold"
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="@+id/GirlEditAppsButtonFrag"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/quickie"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/goMother"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/goChildGirl"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -52,7 +52,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/goChildBoy"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -62,7 +62,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/goDad"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -124,7 +124,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/GirlEditAppsButtonFrag" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/startFaceRecog"
         android:layout_width="100dp"
         android:layout_height="100dp"
