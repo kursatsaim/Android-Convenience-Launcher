@@ -11,21 +11,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -217,6 +222,60 @@ public class ChildGirl extends AppCompatActivity {
                 Toast.makeText(this, "Mikrofon kullanımı reddedildi.", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void pop ()
+    {
+        Boolean bool = true;
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popoutview = layoutInflater.inflate(R.layout.activity_dupe_app_popout, null);
+
+
+        int genis = ViewGroup.LayoutParams.MATCH_PARENT;
+        int uzun = ViewGroup.LayoutParams.MATCH_PARENT;
+        boolean disaritikla = true;
+        final PopupWindow popsayfa = new PopupWindow(popoutview,genis,uzun,disaritikla);
+
+        TextView layoutduzenle =(TextView) popsayfa.getContentView().findViewById(R.id.DupeAppPopoutText);
+        Button iptalButton = (Button) popsayfa.getContentView().findViewById(R.id.DupeAppIptalButon);
+        Button RemoveButton = (Button) popsayfa.getContentView().findViewById(R.id.DupeAppKaldırButon);
+
+
+        /*iptalButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return false;
+            }
+        });*/
+
+        iptalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popsayfa.dismiss();
+            }
+        });
+
+        RemoveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                popsayfa.dismiss();
+            }
+        });
+
+        findViewById(R.id.momlayout).post(new Runnable() {
+            public void run() {
+                popsayfa.showAtLocation(findViewById(R.id.GirlLayout), Gravity.CENTER, 0, 0);
+            }
+        });
+
+        popoutview.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                popsayfa.dismiss();
+                return true;
+            }
+        });
     }
 
 }

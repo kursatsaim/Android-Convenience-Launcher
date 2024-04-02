@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pxfuel"
+    android:id="@+id/GirlLayout"
     tools:context=".ChildGirl">
 
     <androidx.recyclerview.widget.RecyclerView

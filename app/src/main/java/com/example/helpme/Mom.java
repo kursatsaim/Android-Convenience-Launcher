@@ -153,11 +153,6 @@ public class Mom extends AppCompatActivity {
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popoutview = layoutInflater.inflate(R.layout.activity_popout_window, null);
 
-//        PopoutWindow popoutWindow = new PopoutWindow();
-//        popoutWindow.popupyaz();
-
-
-
 
         int genis = ViewGroup.LayoutParams.MATCH_PARENT;
         int uzun = ViewGroup.LayoutParams.MATCH_PARENT;

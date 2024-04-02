@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -27,6 +30,7 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
     GirlAppsList girlAppsList;
     BoyAppsList boyAppsList;
     public int GirlOrBoy = 0;
+    public ConstraintLayout kutu;
 
 
     public UygKutuAdapt(Context context, List<PicsAndAppNames> picsAndAppNames, GirlAppsList girlAppsList) {
@@ -97,7 +101,6 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
         holder.uygismi.setText(picsAndAppNames.get(position).yazi);
         holder.uygresim.setImageDrawable(picsAndAppNames.get(position).resim);
 
-
     }
 
     @Override
@@ -110,7 +113,7 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
 
     public class Holderz extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        public ConstraintLayout kutu;
+
         public TextView uygismi;
         public ImageView uygresim;
 
@@ -120,7 +123,7 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
             kutu     = itemView.findViewById(R.id.uygkutulayout);
             uygismi  = itemView.findViewById(R.id.uygkutuisim);
             uygresim = itemView.findViewById(R.id.uygkutusimge);
-            uygresim . setOnClickListener(this);
+            kutu . setOnClickListener(this);
 
         }
 
@@ -135,14 +138,18 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
                     ArrayList<String> secilenuyglar = new ArrayList<>(girlAppsList.GetGirlApplist());
                     if (secilenuyglar.contains(StringpackageName)) {
                         girlAppsList.RemoveStringRealGirlAppList(StringpackageName);
+                        view.setBackgroundColor(Color.RED);
                     } else {
                         girlAppsList.AddStringRealGirlAppList(StringpackageName);
+                        view.setBackgroundColor(Color.GREEN);
                 }
             } catch (NullPointerException e) {
                 ArrayList<String> secilenuyglar = new ArrayList<>(boyAppsList.GetBoyApplist());
                 if (secilenuyglar.contains(StringpackageName)) {
+                    view.setBackgroundColor(Color.RED);
                     boyAppsList.RemoveStringRealBoyAppList(StringpackageName);
                 } else {
+                    view.setBackgroundColor(Color.GREEN);
                     boyAppsList.AddStringRealBoyAppList(StringpackageName);
                 }
             }
@@ -168,4 +175,6 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
             }
         }
     }
+
+
 }
