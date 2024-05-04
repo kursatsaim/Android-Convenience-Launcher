@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             @Override
             public boolean onLongClick(View v) {
                 OpenProfile1Frag();
-                return false;
+                return true;
             }
         });
 
