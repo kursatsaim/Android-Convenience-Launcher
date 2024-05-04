@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MomChooseAppsForBoy extends AppCompatActivity{
+
     List<PicsAndAppNames> mainliste = new ArrayList<>();
     List<ApplicationInfo> launchableApps;
     List<Drawable> icons = new ArrayList<>();
@@ -79,9 +80,9 @@ public class MomChooseAppsForBoy extends AppCompatActivity{
 
         }
 
-        for (int i = 0; i<uyglist.length;i++){
+        for (int i = 0; i<uyglist.length;i++)
+        {
             String[] strings = new String[]{uyglist[i]};
-
         }
 
         UygKutuAdapt adapt = new UygKutuAdapt(this,mainliste,boyAppsList);

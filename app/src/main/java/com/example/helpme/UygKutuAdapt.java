@@ -131,7 +131,7 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
         public void onClick(View view) {
 
             int position = getAdapterPosition();
-            ApplicationInfo packageName = applist.get(position);
+            ApplicationInfo packageNam = applist.get(position);
             String StringpackageName = Stringapplist.get(position);
             try {
 
@@ -153,13 +153,6 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
                     boyAppsList.AddStringRealBoyAppList(StringpackageName);
                 }
             }
-
-
-
-
-
-
-
         }
     }
     public void burdadasil (String burdakisilincek)

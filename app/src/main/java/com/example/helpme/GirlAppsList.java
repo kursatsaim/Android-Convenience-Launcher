@@ -43,35 +43,6 @@ public class GirlAppsList {
         StringRealGirlAppList.remove(çıkarılcak);
     }
 
-    /*public ArrayList<ApplicationInfo> GetGirlApps()
-    {
-        return RealGirlAppList;
-    }
-
-    public void SetGirlApps(ArrayList<ApplicationInfo> gercekkızuyglist)
-    {
-        this.RealGirlAppList = gercekkızuyglist;
-    }
-
-    public void AddGirlApps(ApplicationInfo applicationInfo)
-    {
-        if(RealGirlAppList != null)
-        {
-            RealGirlAppList.add(applicationInfo);
-        }
-    }
-
-    public void KızUygÇıkar (ApplicationInfo applicationInfo)
-    {
-        if(RealGirlAppList != null)
-        {
-            RealGirlAppList.remove(applicationInfo);
-        }
-    }*/
-
-
-
-
    public void GetChosenApps(ArrayList<String> arrayList)
    {
 

@@ -77,8 +77,7 @@ class WeatherData {
         icon = "https:" + weatherIcon
         temp = weatherTemp
 
-
-        // Notify observers about the data change
-        _dataObservers.forEach { it() } // Call each lambda in the list
+        
+        _dataObservers.forEach { it() }
     }
 }

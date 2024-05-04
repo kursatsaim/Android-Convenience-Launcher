@@ -75,15 +75,14 @@ public class MomChooseAppsLayout extends AppCompatActivity {
             isimler.add(s);
         }
 
-        for(int i = 0; i< launchableApps.size();i++) {
-
+        for(int i = 0; i< launchableApps.size();i++)
+        {
             mainliste.add(new PicsAndAppNames(icons.get(i), isimler.get(i)));
-
         }
 
-        for (int i = 0; i<uyglist.length;i++){
+        for (int i = 0; i<uyglist.length;i++)
+        {
             String[] strings = new String[]{uyglist[i]};
-
         }
 
         UygKutuAdapt adapt = new UygKutuAdapt(this,mainliste,girlAppsList);
@@ -97,7 +96,8 @@ public class MomChooseAppsLayout extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onDestroy()
+    {
         super.onDestroy();
         SaveSharedPrefss();
     }

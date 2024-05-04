@@ -105,10 +105,9 @@ public class ChildBoy extends AppCompatActivity {
             isimler.add(s);
         }
 
-        for(int i = 0; i< launchableApps.size();i++) {
-
+        for(int i = 0; i< launchableApps.size();i++)
+        {
             mainliste.add(new PicsAndAppNames(icons.get(i), isimler.get(i)));
-
         }
 
 
@@ -120,15 +119,7 @@ public class ChildBoy extends AppCompatActivity {
 
 
 
-    public void sil (String silincekuyg)
-    {
-        for (ApplicationInfo appInfo : launchableApps) {
-            if (appInfo.packageName.equals(silincekuyg)) {
-                launchableApps.remove(appInfo);
-                break;
-            }
-        }
-    }
+
     public void getchildboyapps(ArrayList<String> arrayList)
     {
         boyuyg = arrayList;

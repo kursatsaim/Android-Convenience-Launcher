@@ -13,9 +13,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
-import com.example.helpme.FaceRecognition;
-import com.example.helpme.MyObserver2;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.squareup.picasso.Picasso;
@@ -24,7 +21,6 @@ import android.content.Intent;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -35,8 +31,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
-import java.util.Observable;
-import java.util.Observer;
 
 import kotlin.Unit;
 
@@ -44,6 +38,7 @@ import kotlin.Unit;
 public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
     private Button kızbuton;
+    private Button yeniprofil1buton;
     private Button erkekbuton;
     private Button bababuton;
     private Button annebuton;
@@ -73,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         textView = (TextView) findViewById(R.id.textView);
         imageView = (ImageView) findViewById(R.id.imageView);
         faceRecogButton = findViewById(R.id.startFaceRecog);
-        fragmentContainerViewGirl = findViewById(R.id.GirlEditAppsButtonFrag);
+        fragmentContainerViewGirl = findViewById(R.id.EditAppsButtonFrag);
 
        /* MyObserver observer = new MyObserver() {
             @Override
@@ -104,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         FragmentManager karen = getSupportFragmentManager();
 
         karen.beginTransaction()
-                .replace(R.id.GirlEditAppsButtonFrag, Default_Frag.class, null)
+                .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
@@ -166,6 +161,23 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             }
         });
 
+        yeniprofil1buton = (Button) findViewById(R.id.YeniProfil1);
+
+        yeniprofil1buton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenProf1Act();
+            }
+        });
+
+        yeniprofil1buton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                OpenProfile1Frag();
+                return false;
+            }
+        });
+
         faceRecogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         FragmentManager karen = getSupportFragmentManager();
 
         karen.beginTransaction()
-                .replace(R.id.GirlEditAppsButtonFrag, GirlButtonLongPressFrag.class, null)
+                .replace(R.id.EditAppsButtonFrag, GirlButtonLongPressFrag.class, null)
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
@@ -214,11 +226,26 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         FragmentManager karen = getSupportFragmentManager();
 
         karen.beginTransaction()
-                .replace(R.id.GirlEditAppsButtonFrag, BoyButtonLongPressFragment.class, null)
+                .replace(R.id.EditAppsButtonFrag, BoyButtonLongPressFragment.class, null)
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
 
+    }
+    public void OpenProf1Act()
+    {
+        Intent intent = new Intent(this, New_Added_Act1.class);
+        startActivity(intent);
+    }
+    public void OpenProfile1Frag()
+    {
+        FragmentManager karen = getSupportFragmentManager();
+
+        karen.beginTransaction()
+                .replace(R.id.EditAppsButtonFrag, Act1ButtonLongPressFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
     }
 
     public void OpenMomAct(){
