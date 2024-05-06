@@ -30,7 +30,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
 import kotlin.Unit;
 
@@ -38,13 +37,15 @@ import kotlin.Unit;
 public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
     private Button kızbuton;
-    private Button yeniprofil1buton;
+    public Button profil1buton;
     private Button profil2buton;
     private Button profil3buton;
     private Button erkekbuton;
     private Button bababuton;
     private Button annebuton;
     private Button faceRecogButton;
+    private Button ayarlarbuton;
+    private Button profil1yarat, profil2yarat, profil3yarat;
     private TextView textView;
     private ImageView imageView;
     private TextClock textClock;
@@ -61,6 +62,18 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
     public String x;
     private String CurrentUser = "";
     private List<MyObserver2> observerz = new ArrayList<>();
+    int Prof1Vis, Prof2Vis, Prof3Vis;
+    OptionsListFragment optionsListFragment;
+    MainActivity mainActivity;
+
+    public MainActivity(int prof1Vis, int prof2Vis, int prof3Vis) {
+        Prof1Vis = prof1Vis;
+        Prof2Vis = prof2Vis;
+        Prof3Vis = prof3Vis;
+    }
+
+    public MainActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         imageView = (ImageView) findViewById(R.id.imageView);
         faceRecogButton = findViewById(R.id.startFaceRecog);
         fragmentContainerViewGirl = findViewById(R.id.EditAppsButtonFrag);
+        profil1yarat = findViewById(R.id.CreateProfile1);
+        profil2yarat = findViewById(R.id.CreateProfile2);
+        profil3yarat = findViewById(R.id.CreateProfile3);
 
        /* MyObserver observer = new MyObserver() {
             @Override
@@ -130,6 +146,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             @Override
             public boolean onLongClick(View view) {
                 OpenBoyFrag();
+                fragmentContainerViewGirl.bringToFront();
                 return true;
             }
         });
@@ -163,22 +180,25 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             }
         });
 
-        yeniprofil1buton = (Button) findViewById(R.id.YeniProfil1);
+        profil1buton = (Button) findViewById(R.id.YeniProfil1);
+        Prof1Vis = profil1buton.getVisibility();
 
-        yeniprofil1buton.setOnClickListener(new View.OnClickListener() {
+        profil1buton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 OpenProf1Act();
             }
         });
 
-        yeniprofil1buton.setOnLongClickListener(new View.OnLongClickListener() {
+        profil1buton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 OpenProfile1Frag();
                 return true;
             }
         });
+
+
 
         profil2buton = (Button) findViewById(R.id.YeniProfil2);
 
@@ -221,6 +241,36 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             }
         });
 
+        profil1yarat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(profil1buton.getVisibility() == View.INVISIBLE)
+                    profil1buton.setVisibility(View.VISIBLE);
+                else
+                    profil1buton.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        profil2yarat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(profil2buton.getVisibility() == View.INVISIBLE)
+                    profil2buton.setVisibility(View.VISIBLE);
+                else
+                    profil2buton.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        profil3yarat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(profil3buton.getVisibility() == View.INVISIBLE)
+                    profil3buton.setVisibility(View.VISIBLE);
+                else
+                    profil3buton.setVisibility(View.INVISIBLE);
+            }
+        });
+
         textClock = findViewById(R.id.textClock2);
         textClock.getFormat24Hour();
 
@@ -229,6 +279,27 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String currentDate = simpleDateFormat.format(calendar.getTime());
         dateText.setText(currentDate);
+
+        ayarlarbuton = findViewById(R.id.quickie);
+
+        ayarlarbuton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(profil1yarat.getVisibility() == View.INVISIBLE)
+                    profil1yarat.setVisibility(View.VISIBLE);
+                else
+                    profil1yarat.setVisibility(View.INVISIBLE);
+                if(profil2yarat.getVisibility() == View.INVISIBLE)
+                    profil2yarat.setVisibility(View.VISIBLE);
+                else
+                    profil2yarat.setVisibility(View.INVISIBLE);
+                if(profil3yarat.getVisibility() == View.INVISIBLE)
+                    profil3yarat.setVisibility(View.VISIBLE);
+                else
+                    profil3yarat.setVisibility(View.INVISIBLE);
+
+            }
+        });
 
         //faceRecognition = new FaceRecognition();
         //faceRecognition.addObserver(this);
@@ -248,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
         karen.beginTransaction()
                 .replace(R.id.EditAppsButtonFrag, GirlButtonLongPressFrag.class, null)
-                .setReorderingAllowed(true)
+                .setReorderingAllowed(false)
                 .addToBackStack(null)
                 .commit();
 
@@ -263,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
         karen.beginTransaction()
                 .replace(R.id.EditAppsButtonFrag, BoyButtonLongPressFragment.class, null)
-                .setReorderingAllowed(true)
+                .setReorderingAllowed(false)
                 .addToBackStack(null)
                 .commit();
 
@@ -279,7 +350,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
         karen.beginTransaction()
                 .replace(R.id.EditAppsButtonFrag, Act1ButtonLongPressFragment.class, null)
-                .setReorderingAllowed(true)
+                .setReorderingAllowed(false)
                 .addToBackStack(null)
                 .commit();
     }
@@ -295,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
         karen.beginTransaction()
                 .replace(R.id.EditAppsButtonFrag, Act2ButtonLongPressFragment.class, null)
-                .setReorderingAllowed(true)
+                .setReorderingAllowed(false)
                 .addToBackStack(null)
                 .commit();
     }
@@ -311,10 +382,24 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
         karen.beginTransaction()
                 .replace(R.id.EditAppsButtonFrag, Act3ButtonLongPressFragment.class, null)
-                .setReorderingAllowed(true)
+                .setReorderingAllowed(false)
                 .addToBackStack(null)
                 .commit();
     }
+
+    /*public void OpenOptionsFrag(View view)
+    {
+        FragmentManager karen = getSupportFragmentManager();
+
+        karen.beginTransaction()
+                .replace(R.id.EditAppsButtonFrag, OptionsListFragment.class, null)
+                .setReorderingAllowed(false)
+                .addToBackStack(null)
+                .commit();
+fragmentContainerViewGirl.bringToFront();
+
+
+    }*/
 
     public void OpenMomAct(){
         Intent intent = new Intent(this, Mom.class);
@@ -335,11 +420,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         startActivity(intent);
     }
 
-    public void QuickAç(View view)
-    {
-        Intent intent = new Intent(this, MomChooseAppsLayout.class);
-        startActivity(intent);
-    }
+
 
     public void getPermission() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -362,15 +443,6 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         startActivity(intent);
     }
 
-    public void OpenFamilyActivity(String name)
-    {
-        intentDad = new Intent(this,Dad.class);
-        if (Objects.equals(name, "baba"))
-        {
-            startActivity(intentDad);
-        }
-    }
-
 
     /*@Override
     public void update(MyObservable observable, String name) {
@@ -380,4 +452,27 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             }
         }
     }*/
+
+    public void SetProfile1Visibility()
+    {
+        if(profil1buton.getVisibility() == View.INVISIBLE)
+        profil1buton.setVisibility(View.VISIBLE);
+        else
+            profil1buton.setVisibility(View.INVISIBLE);
+    }
+    public void SetProfile2Visibility()
+    {
+        if(profil2buton.getVisibility() == View.INVISIBLE)
+            profil2buton.setVisibility(View.VISIBLE);
+        else
+            profil2buton.setVisibility(View.INVISIBLE);
+    }
+    public void SetProfile3Visibility()
+    {
+        if(profil3buton.getVisibility() == View.INVISIBLE)
+            profil3buton.setVisibility(View.VISIBLE);
+        else
+            profil3buton.setVisibility(View.INVISIBLE);
+    }
+
 }
