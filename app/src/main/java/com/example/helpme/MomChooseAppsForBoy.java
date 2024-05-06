@@ -3,8 +3,6 @@ package com.example.helpme;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.fragment.app.FragmentContainerView;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -85,7 +83,7 @@ public class MomChooseAppsForBoy extends AppCompatActivity{
             String[] strings = new String[]{uyglist[i]};
         }
 
-        UygKutuAdapt adapt = new UygKutuAdapt(this,mainliste,boyAppsList);
+        AdapterChooseAppsForBoy adapt = new AdapterChooseAppsForBoy(this,mainliste,boyAppsList);
         recyclerView.setAdapter(adapt);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

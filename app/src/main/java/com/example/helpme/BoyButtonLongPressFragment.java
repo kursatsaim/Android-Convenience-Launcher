@@ -26,7 +26,7 @@ public class BoyButtonLongPressFragment extends Fragment {
     private String mParam1;
     private String mParam2;
      Button button;
-    UygKutuAdapt uygKutuAdapt;
+    AdapterChooseAppsForBoy adapterChooseAppsForBoy;
 
 
     public BoyButtonLongPressFragment() {
@@ -65,7 +65,7 @@ public class BoyButtonLongPressFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_boy_button_long_press, container, false);
         button = view.findViewById(R.id.button);
-        uygKutuAdapt = new UygKutuAdapt();
+        adapterChooseAppsForBoy = new AdapterChooseAppsForBoy();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

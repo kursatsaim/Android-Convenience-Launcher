@@ -6,13 +6,11 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,19 +19,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
+public class AdapterChooseAppsGirl extends RecyclerView.Adapter<AdapterChooseAppsGirl.Holderz>{
 
     ArrayList<ApplicationInfo> applist;
     ArrayList<String> Stringapplist;
     Context context;
     List<PicsAndAppNames> picsAndAppNames;
     GirlAppsList girlAppsList;
-    BoyAppsList boyAppsList;
-    public int GirlOrBoy = 0;
     public ConstraintLayout kutu;
 
 
-    public UygKutuAdapt(Context context, List<PicsAndAppNames> picsAndAppNames, GirlAppsList girlAppsList) {
+    public AdapterChooseAppsGirl(Context context, List<PicsAndAppNames> picsAndAppNames, GirlAppsList girlAppsList) {
         this.context = context;
         this.picsAndAppNames = picsAndAppNames;
         this.girlAppsList = girlAppsList;
@@ -57,31 +53,9 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
 
     }
 
-    public UygKutuAdapt(Context context, List<PicsAndAppNames> picsAndAppNames, BoyAppsList boyAppsList) {
-        this.context = context;
-        this.picsAndAppNames = picsAndAppNames;
-        this.boyAppsList = boyAppsList;
 
 
-        PackageManager packageManager = context.getPackageManager();
-        applist = new ArrayList<ApplicationInfo>();
-        Stringapplist = new ArrayList<String>();
-
-        Intent intent = new Intent(Intent.ACTION_MAIN, null);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-        List<ResolveInfo> allApps = packageManager.queryIntentActivities(intent, 0);
-        for(ResolveInfo ri:allApps)
-        {
-            applist.add(ri.activityInfo.applicationInfo);
-            Stringapplist.add(ri.activityInfo.packageName);
-        }
-
-        burdadasil("com.google.android.googlequicksearchbox");
-
-    }
-
-    public UygKutuAdapt() {
+    public AdapterChooseAppsGirl() {
     }
 
     @NonNull
@@ -133,26 +107,15 @@ public class UygKutuAdapt extends RecyclerView.Adapter<UygKutuAdapt.Holderz>{
             int position = getAdapterPosition();
             ApplicationInfo packageNam = applist.get(position);
             String StringpackageName = Stringapplist.get(position);
-            try {
-
-                    ArrayList<String> secilenuyglar = new ArrayList<>(girlAppsList.GetGirlApplist());
-                    if (secilenuyglar.contains(StringpackageName)) {
-                        girlAppsList.RemoveStringRealGirlAppList(StringpackageName);
-                        view.setBackgroundColor(Color.RED);
-                    } else {
-                        girlAppsList.AddStringRealGirlAppList(StringpackageName);
-                        view.setBackgroundColor(Color.GREEN);
-                }
-            } catch (NullPointerException e) {
-                ArrayList<String> secilenuyglar = new ArrayList<>(boyAppsList.GetBoyApplist());
-                if (secilenuyglar.contains(StringpackageName)) {
-                    view.setBackgroundColor(Color.RED);
-                    boyAppsList.RemoveStringRealBoyAppList(StringpackageName);
-                } else {
-                    view.setBackgroundColor(Color.GREEN);
-                    boyAppsList.AddStringRealBoyAppList(StringpackageName);
-                }
+            ArrayList<String> secilenuyglar = new ArrayList<>(girlAppsList.GetGirlApplist());
+            if (secilenuyglar.contains(StringpackageName)) {
+                girlAppsList.RemoveStringRealGirlAppList(StringpackageName);
+                view.setBackgroundColor(Color.RED);
+            } else {
+                girlAppsList.AddStringRealGirlAppList(StringpackageName);
+                view.setBackgroundColor(Color.GREEN);
             }
+
         }
     }
     public void burdadasil (String burdakisilincek)

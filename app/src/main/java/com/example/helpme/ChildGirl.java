@@ -41,9 +41,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import javax.inject.Inject;
 
 public class ChildGirl extends AppCompatActivity {
 
+    @Inject
+    Context context;
     List<PicsAndAppNames> mainliste = new ArrayList<>();
 
     List<ApplicationInfo> launchableApps;
@@ -117,7 +120,7 @@ public class ChildGirl extends AppCompatActivity {
         }
 
 
-
+        context = this;
         RAdapter adapt = new RAdapter(this,mainliste);
         recyclerView.setAdapter(adapt);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -276,6 +279,9 @@ public class ChildGirl extends AppCompatActivity {
                 return true;
             }
         });
+    }
+    public Context getContextGirl() {
+        return this;
     }
 
 }

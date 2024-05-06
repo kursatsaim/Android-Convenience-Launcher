@@ -4,12 +4,17 @@ import static com.example.helpme.MomChooseAppsLayout.KEY_STRING_REAL_GIRL_APP_LI
 import static com.example.helpme.MomChooseAppsLayout.SHARED_PREF;
 import static com.example.helpme.MomChooseAppsForBoy.SHARED_PREF_BOY;
 import static com.example.helpme.MomChooseAppsForBoy.KEY_STRING_REAL_BOY_APP_LIST;
+import static com.example.helpme.ChooseNewAct1Layout.KEY_STRING_REAL_NEWACT1_APP_LIST;
+import static com.example.helpme.ChooseNewAct1Layout.SHARED_PREF_ACT1;
+import static com.example.helpme.ChooseNewAct2Layout.KEY_STRING_REAL_NEWACT2_APP_LIST;
+import static com.example.helpme.ChooseNewAct2Layout.SHARED_PREF_ACT2;
+import static com.example.helpme.ChooseNewAct3Layout.KEY_STRING_REAL_NEWACT3_APP_LIST;
+import static com.example.helpme.ChooseNewAct3Layout.SHARED_PREF_ACT3;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +33,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
-
-
     ArrayList<String> applist;
     Context context;
     List<PicsAndAppNames> picsAndAppNames;
     GirlAppsList girlAppsList;
     BoyAppsList boyAppsList;
+    NewAct1List newAct1List;
+    NewAct2List newAct2List;
+    NewAct3List newAct3List;
     ChildBoy childBoy = new ChildBoy();
+    ChildGirl childGirl = new ChildGirl();
+    New_Added_Act1 newAddedAct1 = new New_Added_Act1();
+    NewAct2 newAct2 = new NewAct2();
+    NewAct3 newAct3 = new NewAct3();
     int a = 0,CurrentPosition,ViewAmount;
 
     public RAdapter(Context context, List<PicsAndAppNames> picsAndAppNames) {
@@ -43,17 +53,16 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
         this.picsAndAppNames = picsAndAppNames;
         boyAppsList = new BoyAppsList(context);
         girlAppsList = new GirlAppsList(context);
+        newAct1List = new NewAct1List(context);
+        newAct2List = new NewAct2List(context);
+        newAct3List = new NewAct3List(context);
+
         PackageManager pm = context.getPackageManager();
 
-        if(context.getClass() == childBoy.getContext().getClass())
-        {
-            LoadSharedPrefsBoy();
-        }
-        else {
-            LoadSharedPrefs();
-        }
+        LoadSharedPrefss(context.getClass());
         
     }
+
 
 
 
@@ -66,8 +75,6 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
             Holderz holderz = new Holderz(view);
             return holderz;
             //CTRL+ ALT + SHIFT + F7
-
-
     }
 
     @Override
@@ -158,17 +165,7 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
         }
     }
 
-    public void burdadasil (String burdakisilincek)
-    {
-        for(String s : applist)
-        {
-            if(s.equals(burdakisilincek))
-            {
-                applist.remove(s);
-                break;
-            }
-        }
-    }
+
     public void LoadSharedPrefs()
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE);
@@ -183,20 +180,80 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
             applist = new ArrayList<String>();
         }
     }
+    private void LoadSharedPrefss(Class<? extends Context> aClass) {
 
-    public void LoadSharedPrefsBoy()
-    {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_BOY,Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(KEY_STRING_REAL_BOY_APP_LIST,null);
-        Type type = new TypeToken<ArrayList<String>>() {}.getType();
-
-        applist = gson.fromJson(json,type);
-
-        if(applist == null)
+        if(aClass == childBoy.getContextBoy().getClass())
         {
-            applist = new ArrayList<String>();
+            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_BOY,Context.MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = sharedPreferences.getString(KEY_STRING_REAL_BOY_APP_LIST,null);
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
+            applist = gson.fromJson(json,type);
+
+            if(applist == null)
+            {
+                applist = new ArrayList<String>();
+            }
         }
+        else if (aClass == childGirl.getContextGirl().getClass())
+        {
+            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = sharedPreferences.getString(KEY_STRING_REAL_GIRL_APP_LIST,null);
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
+            applist = gson.fromJson(json,type);
+
+            if(applist == null)
+            {
+                applist = new ArrayList<String>();
+            }
+        }
+        else if (aClass == newAddedAct1.getContextAct1().getClass())
+        {
+            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_ACT1,Context.MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = sharedPreferences.getString(KEY_STRING_REAL_NEWACT1_APP_LIST,null);
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
+            applist = gson.fromJson(json,type);
+
+            if(applist == null)
+            {
+                applist = new ArrayList<String>();
+            }
+        }
+        else if (aClass == newAct2.getContextAct2().getClass())
+        {
+            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_ACT2,Context.MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = sharedPreferences.getString(KEY_STRING_REAL_NEWACT2_APP_LIST,null);
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
+            applist = gson.fromJson(json,type);
+
+            if(applist == null)
+            {
+                applist = new ArrayList<String>();
+            }
+        }
+        else if (aClass == newAct3.getContextAct3().getClass())
+        {
+            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_ACT3,Context.MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = sharedPreferences.getString(KEY_STRING_REAL_NEWACT3_APP_LIST,null);
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
+            applist = gson.fromJson(json,type);
+
+            if(applist == null)
+            {
+                applist = new ArrayList<String>();
+            }
+        }
+
     }
+
 
 }

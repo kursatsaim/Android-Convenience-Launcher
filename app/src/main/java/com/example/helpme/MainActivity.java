@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
     private Button kızbuton;
     private Button yeniprofil1buton;
+    private Button profil2buton;
+    private Button profil3buton;
     private Button erkekbuton;
     private Button bababuton;
     private Button annebuton;
@@ -178,6 +180,40 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             }
         });
 
+        profil2buton = (Button) findViewById(R.id.YeniProfil2);
+
+        profil2buton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenProf2Act();
+            }
+        });
+
+        profil2buton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                OpenProfile2Frag();
+                return true;
+            }
+        });
+
+        profil3buton = (Button) findViewById(R.id.YeniProfil3);
+
+        profil3buton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenProf3Act();
+            }
+        });
+
+        profil3buton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                OpenProfile3Frag();
+                return true;
+            }
+        });
+
         faceRecogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -243,6 +279,38 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
         karen.beginTransaction()
                 .replace(R.id.EditAppsButtonFrag, Act1ButtonLongPressFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void OpenProf2Act()
+    {
+        Intent intent = new Intent(this, NewAct2.class);
+        startActivity(intent);
+    }
+    public void OpenProfile2Frag()
+    {
+        FragmentManager karen = getSupportFragmentManager();
+
+        karen.beginTransaction()
+                .replace(R.id.EditAppsButtonFrag, Act2ButtonLongPressFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void OpenProf3Act()
+    {
+        Intent intent = new Intent(this, NewAct3.class);
+        startActivity(intent);
+    }
+    public void OpenProfile3Frag()
+    {
+        FragmentManager karen = getSupportFragmentManager();
+
+        karen.beginTransaction()
+                .replace(R.id.EditAppsButtonFrag, Act3ButtonLongPressFragment.class, null)
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
