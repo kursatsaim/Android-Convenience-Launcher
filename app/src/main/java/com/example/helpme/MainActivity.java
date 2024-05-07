@@ -36,8 +36,9 @@ import kotlin.Unit;
 
 public class MainActivity extends AppCompatActivity implements MyObserver2  {
 
+    //commitlemek için rastgele ekledim bu yazıyı silebilirsin
     private Button kızbuton;
-    public Button profil1buton;
+    private Button profil1buton;
     private Button profil2buton;
     private Button profil3buton;
     private Button erkekbuton;
@@ -66,10 +67,10 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
     OptionsListFragment optionsListFragment;
     MainActivity mainActivity;
 
-    public MainActivity(int prof1Vis, int prof2Vis, int prof3Vis) {
-        Prof1Vis = prof1Vis;
-        Prof2Vis = prof2Vis;
-        Prof3Vis = prof3Vis;
+    public MainActivity(Button profil1buton, Button profil2buton, Button profil3buton) {
+        this.profil1buton = profil1buton;
+        this.profil2buton = profil2buton;
+        this.profil3buton = profil3buton;
     }
 
     public MainActivity() {
@@ -285,6 +286,9 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         ayarlarbuton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //OpenOptionsFrag();
+
                 if(profil1yarat.getVisibility() == View.INVISIBLE)
                     profil1yarat.setVisibility(View.VISIBLE);
                 else
@@ -387,7 +391,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
                 .commit();
     }
 
-    /*public void OpenOptionsFrag(View view)
+    public void OpenOptionsFrag()
     {
         FragmentManager karen = getSupportFragmentManager();
 
@@ -399,7 +403,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
 fragmentContainerViewGirl.bringToFront();
 
 
-    }*/
+    }
 
     public void OpenMomAct(){
         Intent intent = new Intent(this, Mom.class);
@@ -455,8 +459,10 @@ fragmentContainerViewGirl.bringToFront();
 
     public void SetProfile1Visibility()
     {
+        Button profil1buton = new Button(this);
+        profil1buton = findViewById(R.id.CreateProfile1);
         if(profil1buton.getVisibility() == View.INVISIBLE)
-        profil1buton.setVisibility(View.VISIBLE);
+            profil1buton.setVisibility(View.VISIBLE);
         else
             profil1buton.setVisibility(View.INVISIBLE);
     }
