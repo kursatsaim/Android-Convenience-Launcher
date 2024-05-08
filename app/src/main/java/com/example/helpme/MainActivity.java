@@ -3,7 +3,7 @@ package com.example.helpme;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
 import android.provider.Settings;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
     private Button ayarlarbuton;
     private Button profil1yarat, profil2yarat, profil3yarat;
     private TextView textView;
-    private ImageView imageView;
+    private ImageView imageView, darkBackground;
     private TextClock textClock;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private TextView dateText;
@@ -66,15 +67,9 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
     int Prof1Vis, Prof2Vis, Prof3Vis;
     OptionsListFragment optionsListFragment;
     MainActivity mainActivity;
+    ConstraintLayout LayoutMain;
 
-    public MainActivity(Button profil1buton, Button profil2buton, Button profil3buton) {
-        this.profil1buton = profil1buton;
-        this.profil2buton = profil2buton;
-        this.profil3buton = profil3buton;
-    }
 
-    public MainActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         profil1yarat = findViewById(R.id.CreateProfile1);
         profil2yarat = findViewById(R.id.CreateProfile2);
         profil3yarat = findViewById(R.id.CreateProfile3);
+        darkBackground = findViewById(R.id.imageView3);
 
        /* MyObserver observer = new MyObserver() {
             @Override
@@ -136,6 +132,13 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         kızbuton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager karen = getSupportFragmentManager();
+
+                karen.beginTransaction()
+                        .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit();
             OpenGirlAct();
 
             }
@@ -155,6 +158,14 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         erkekbuton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager karen = getSupportFragmentManager();
+
+                karen.beginTransaction()
+                        .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit();
+
                 OpenBoyAct();
 
             }
@@ -164,6 +175,14 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         annebuton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager karen = getSupportFragmentManager();
+
+                karen.beginTransaction()
+                        .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit();
+
                 OpenMomAct();
 
             }
@@ -174,6 +193,13 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         bababuton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager karen = getSupportFragmentManager();
+
+                karen.beginTransaction()
+                        .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit();
 
                 OpenDadAct();
 
@@ -187,6 +213,14 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         profil1buton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                FragmentManager karen = getSupportFragmentManager();
+
+                karen.beginTransaction()
+                        .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit();
+
                 OpenProf1Act();
             }
         });
@@ -206,6 +240,14 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         profil2buton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager karen = getSupportFragmentManager();
+
+                karen.beginTransaction()
+                        .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit();
+
                 OpenProf2Act();
             }
         });
@@ -223,6 +265,14 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         profil3buton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager karen = getSupportFragmentManager();
+
+                karen.beginTransaction()
+                        .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit();
+
                 OpenProf3Act();
             }
         });
@@ -238,6 +288,14 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         faceRecogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentManager karen = getSupportFragmentManager();
+
+                karen.beginTransaction()
+                        .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit();
+
                 OpenFaceRecog();
             }
         });
@@ -287,31 +345,37 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             @Override
             public void onClick(View v) {
 
-                //OpenOptionsFrag();
-
-                if(profil1yarat.getVisibility() == View.INVISIBLE)
-                    profil1yarat.setVisibility(View.VISIBLE);
-                else
-                    profil1yarat.setVisibility(View.INVISIBLE);
-                if(profil2yarat.getVisibility() == View.INVISIBLE)
-                    profil2yarat.setVisibility(View.VISIBLE);
-                else
-                    profil2yarat.setVisibility(View.INVISIBLE);
-                if(profil3yarat.getVisibility() == View.INVISIBLE)
-                    profil3yarat.setVisibility(View.VISIBLE);
-                else
-                    profil3yarat.setVisibility(View.INVISIBLE);
-
+                OpenOptionsFrag();
             }
         });
 
         //faceRecognition = new FaceRecognition();
         //faceRecognition.addObserver(this);
+
+        LayoutMain = findViewById(R.id.mainlayout);
+
+        LayoutMain.setOnTouchListener(new View.OnTouchListener() {
+            int d = 1;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                FragmentManager karen = getSupportFragmentManager();
+
+                karen.beginTransaction()
+                        .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack(null)
+                        .commit();
+                return false;
+            }
+        });
+
     }
+
     @Override
-    public void onUpdate(String name) { // "MyObserver" yerine "MyObserver2" yazın
+    public void onUpdate(String name) {
         x = name;
     }
+
 
     public void OpenGirlAct(){
         Intent intent = new Intent(this, ChildGirl.class);
@@ -400,7 +464,6 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
                 .setReorderingAllowed(false)
                 .addToBackStack(null)
                 .commit();
-fragmentContainerViewGirl.bringToFront();
 
 
     }
@@ -459,8 +522,6 @@ fragmentContainerViewGirl.bringToFront();
 
     public void SetProfile1Visibility()
     {
-        Button profil1buton = new Button(this);
-        profil1buton = findViewById(R.id.CreateProfile1);
         if(profil1buton.getVisibility() == View.INVISIBLE)
             profil1buton.setVisibility(View.VISIBLE);
         else

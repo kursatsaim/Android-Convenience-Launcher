@@ -61,8 +61,6 @@ public class ChildGirl extends AppCompatActivity {
     private SpeechRecognizer speechRecognizer;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
