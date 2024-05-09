@@ -349,6 +349,8 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             }
         });
 
+
+
         //faceRecognition = new FaceRecognition();
         //faceRecognition.addObserver(this);
 

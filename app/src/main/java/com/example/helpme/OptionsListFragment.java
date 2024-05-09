@@ -9,6 +9,7 @@ import static com.example.helpme.ChooseNewAct3Layout.SHARED_PREF_ACT3;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -51,6 +52,7 @@ public class OptionsListFragment extends Fragment {
     String json;
     NewAct2List newAct2List;
     NewAct3List newAct3List;
+    private Button goBackgroundEditor;
 
 
     public OptionsListFragment() {
@@ -104,6 +106,7 @@ public class OptionsListFragment extends Fragment {
         buttonUp = v.findViewById(R.id.CreateProfile1);
         buttonRight = v.findViewById(R.id.CreateProfile2);
         buttonDown = v.findViewById(R.id.CreateProfile3);
+        goBackgroundEditor = v.findViewById(R.id.goBackgroundPage);
         removeProf1Button = v.findViewById(R.id.RemoveProf1);
         removeProf2Button = v.findViewById(R.id.RemoveProf2);
         removeProf3Button = v.findViewById(R.id.RemoveProf3);
@@ -154,6 +157,14 @@ public class OptionsListFragment extends Fragment {
                 WipeandSaveSharedPrefsAct3();
             }
         });
+        goBackgroundEditor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SetBackgroundsAct.class);
+                startActivity(intent);
+            }
+        });
+
         return v;
 
     }
