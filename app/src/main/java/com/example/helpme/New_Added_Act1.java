@@ -2,6 +2,10 @@ package com.example.helpme;
 
 import static com.example.helpme.ChooseNewAct1Layout.KEY_STRING_REAL_NEWACT1_APP_LIST;
 import static com.example.helpme.ChooseNewAct1Layout.SHARED_PREF_ACT1;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_ACT1;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_DAD;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_ACT1;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_DAD;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -9,7 +13,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,6 +44,8 @@ public class New_Added_Act1 extends AppCompatActivity {
     String[] uyglist;
     public ArrayList<String> act1uyg;
     PackageManager packageManager;
+    ImageView backgroundpic;
+    private Uri imageUri;
 
     public New_Added_Act1()
     {
@@ -53,6 +61,11 @@ public class New_Added_Act1 extends AppCompatActivity {
         launchableApps = new ArrayList<ApplicationInfo>();
         packageManager = getPackageManager();
         LoadSharedPrefs();
+        LoadSharePrefsForBackground();
+        if(imageUri != null)
+        {
+            backgroundpic.setImageURI(imageUri);
+        }
 
         for (String packageName : act1uyg) {
             try {
@@ -118,6 +131,15 @@ public class New_Added_Act1 extends AppCompatActivity {
         if(act1uyg == null)
         {
             act1uyg = new ArrayList<String>();
+        }
+    }
+
+    private void LoadSharePrefsForBackground()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_ACT1, Context.MODE_PRIVATE);
+        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_ACT1, "");
+        if (!imagePath.isEmpty()) {
+            imageUri = Uri.parse(imagePath);
         }
     }
 

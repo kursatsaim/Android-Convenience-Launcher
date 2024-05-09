@@ -2,6 +2,8 @@ package com.example.helpme;
 
 import static com.example.helpme.MomChooseAppsLayout.KEY_STRING_REAL_GIRL_APP_LIST;
 import static com.example.helpme.MomChooseAppsLayout.SHARED_PREF;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_GIRL;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_GIRL;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
@@ -59,6 +62,8 @@ public class ChildGirl extends AppCompatActivity {
     PackageManager packageManager;
     private ImageView GetVoiceButton;
     private SpeechRecognizer speechRecognizer;
+    ImageView backgroundpic;
+    private Uri imageUri;
 
 
     @Override
@@ -71,6 +76,7 @@ public class ChildGirl extends AppCompatActivity {
         launchableApps = new ArrayList<ApplicationInfo>();
         packageManager = getPackageManager();
         LoadSharedPrefs();
+        LoadSharePrefsForBackground();
         GetVoiceButton = findViewById(R.id.mic_speak_iv);
 
 
@@ -83,7 +89,10 @@ public class ChildGirl extends AppCompatActivity {
             }
         }
 
-        //launchableApps = kızınuyglarr.GetGirlApps();
+        if(imageUri != null)
+        {
+            backgroundpic.setImageURI(imageUri);
+        }
 
         RecyclerView recyclerView = findViewById(R.id.recviewkiz);
 
@@ -280,6 +289,15 @@ public class ChildGirl extends AppCompatActivity {
     }
     public Context getContextGirl() {
         return this;
+    }
+
+    private void LoadSharePrefsForBackground()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_GIRL, Context.MODE_PRIVATE);
+        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_GIRL, "");
+        if (!imagePath.isEmpty()) {
+            imageUri = Uri.parse(imagePath);
+        }
     }
 
 }

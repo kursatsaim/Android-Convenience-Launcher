@@ -1,5 +1,10 @@
 package com.example.helpme;
 
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_DAD;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_MAIN;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_DAD;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_MAIN;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -8,9 +13,11 @@ import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -49,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
     private Button ayarlarbuton;
     private Button profil1yarat, profil2yarat, profil3yarat;
     private TextView textView;
-    private ImageView imageView, darkBackground;
+    private ImageView imageView, darkBackground,backgroundpic;
     private TextClock textClock;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private TextView dateText;
@@ -68,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
     OptionsListFragment optionsListFragment;
     MainActivity mainActivity;
     ConstraintLayout LayoutMain;
+    private Uri imageUri;
 
 
 
@@ -84,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         profil2yarat = findViewById(R.id.CreateProfile2);
         profil3yarat = findViewById(R.id.CreateProfile3);
         darkBackground = findViewById(R.id.imageView3);
+        backgroundpic = findViewById(R.id.backgroundImageview);
 
        /* MyObserver observer = new MyObserver() {
             @Override
@@ -542,6 +551,14 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             profil3buton.setVisibility(View.VISIBLE);
         else
             profil3buton.setVisibility(View.INVISIBLE);
+    }
+    private void LoadSharePrefs()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_MAIN, Context.MODE_PRIVATE);
+        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_MAIN, "");
+        if (!imagePath.isEmpty()) {
+            imageUri = Uri.parse(imagePath);
+        }
     }
 
 }

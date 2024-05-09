@@ -2,6 +2,8 @@ package com.example.helpme;
 
 import static com.example.helpme.MomChooseAppsLayout.KEY_STRING_REAL_GIRL_APP_LIST;
 import static com.example.helpme.MomChooseAppsLayout.SHARED_PREF;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_GIRL;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_MOM;
 
 import android.app.AppOpsManager;
 import android.app.usage.UsageStats;
@@ -13,6 +15,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Gravity;
@@ -21,6 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -58,8 +62,8 @@ public class Mom extends AppCompatActivity {
 
     String[] istediklerim;
     public ArrayList<String> kızuyg;
-    ArrayList<String> CheckForDupes;
-
+    ImageView backgroundpic;
+    private Uri imageUri;
 
 
     @Override
@@ -71,13 +75,17 @@ public class Mom extends AppCompatActivity {
         LoadSharedPrefs();
 
         launchableApps = getLaunchableApps();
+
+        LoadSharePrefsForBackground();
+        if(imageUri != null)
+        {
+            backgroundpic.setImageURI(imageUri);
+        }
+
         getzaman();
 
 
         pop();
-
-
-
 
 
         sil("com.google.android.googlequicksearchbox");
@@ -279,7 +287,14 @@ public class Mom extends AppCompatActivity {
     }
 
 
-
+    private void LoadSharePrefsForBackground()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_MOM, Context.MODE_PRIVATE);
+        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_GIRL, "");
+        if (!imagePath.isEmpty()) {
+            imageUri = Uri.parse(imagePath);
+        }
+    }
 
 
 }

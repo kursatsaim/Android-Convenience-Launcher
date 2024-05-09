@@ -2,6 +2,8 @@ package com.example.helpme;
 
 import static com.example.helpme.ChooseNewAct3Layout.KEY_STRING_REAL_NEWACT3_APP_LIST;
 import static com.example.helpme.ChooseNewAct3Layout.SHARED_PREF_ACT3;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_ACT3;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_ACT3;
 
 
 import android.content.pm.ApplicationInfo;
@@ -10,7 +12,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +44,8 @@ public class NewAct3 extends AppCompatActivity {
     String[] uyglist;
     public ArrayList<String> act3uyg;
     PackageManager packageManager;
+    ImageView backgroundpic;
+    private Uri imageUri;
 
     public NewAct3()
     {
@@ -55,6 +61,11 @@ public class NewAct3 extends AppCompatActivity {
         launchableApps = new ArrayList<ApplicationInfo>();
         packageManager = getPackageManager();
         LoadSharedPrefs();
+        LoadSharePrefsForBackground();
+        if(imageUri != null)
+        {
+            backgroundpic.setImageURI(imageUri);
+        }
 
         for (String packageName : act3uyg) {
             try {
@@ -121,6 +132,15 @@ public class NewAct3 extends AppCompatActivity {
         if(act3uyg == null)
         {
             act3uyg = new ArrayList<String>();
+        }
+    }
+
+    private void LoadSharePrefsForBackground()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_ACT3, Context.MODE_PRIVATE);
+        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_ACT3, "");
+        if (!imagePath.isEmpty()) {
+            imageUri = Uri.parse(imagePath);
         }
     }
 

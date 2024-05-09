@@ -2,6 +2,8 @@ package com.example.helpme;
 
 import static com.example.helpme.MomChooseAppsForBoy.KEY_STRING_REAL_BOY_APP_LIST;
 import static com.example.helpme.MomChooseAppsForBoy.SHARED_PREF_BOY;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_BOY;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_BOY;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +14,9 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 
 import com.google.gson.Gson;
@@ -39,6 +43,8 @@ public class ChildBoy extends AppCompatActivity {
     String[] uyglist;
     public ArrayList<String> boyuyg;
     PackageManager packageManager;
+    ImageView backgroundpic;
+    private Uri imageUri;
 
     public ChildBoy() {
     }
@@ -52,6 +58,11 @@ public class ChildBoy extends AppCompatActivity {
         launchableApps = new ArrayList<ApplicationInfo>();
         packageManager = getPackageManager();
         LoadSharedPrefs();
+        LoadSharePrefsForBackground();
+        if(imageUri != null)
+        {
+            backgroundpic.setImageURI(imageUri);
+        }
 
         for (String packageName : boyuyg) {
             try {
@@ -123,5 +134,14 @@ public class ChildBoy extends AppCompatActivity {
 
     public Context getContextBoy() {
         return this;
+    }
+
+    private void LoadSharePrefsForBackground()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_BOY, Context.MODE_PRIVATE);
+        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_BOY, "");
+        if (!imagePath.isEmpty()) {
+            imageUri = Uri.parse(imagePath);
+        }
     }
 }

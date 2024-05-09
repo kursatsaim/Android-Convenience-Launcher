@@ -1,17 +1,24 @@
 package com.example.helpme;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_DAD;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_DAD;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Dad extends AppCompatActivity {
 
@@ -24,6 +31,8 @@ public class Dad extends AppCompatActivity {
     List<String> isimler = new ArrayList<>();
 
     String[] uyglist;
+    ImageView backgroundpic;
+    private Uri imageUri;
 
 
 
@@ -31,10 +40,17 @@ public class Dad extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dad);
+        backgroundpic = findViewById(R.id.imageView);
 
         launchableApps = getLaunchableApps();
 
         sil("com.google.android.googlequicksearchbox");
+
+        LoadSharePrefsForBackground();
+        if(imageUri != null)
+        {
+            backgroundpic.setImageURI(imageUri);
+        }
 
         uyglist = new String[launchableApps.size()];
 
@@ -73,7 +89,14 @@ public class Dad extends AppCompatActivity {
 
     }
 
-
+    private void LoadSharePrefsForBackground()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_DAD, Context.MODE_PRIVATE);
+        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_DAD, "");
+        if (!imagePath.isEmpty()) {
+            imageUri = Uri.parse(imagePath);
+        }
+    }
 
     private List<ApplicationInfo> getLaunchableApps() {
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);

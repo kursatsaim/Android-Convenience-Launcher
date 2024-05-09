@@ -17,16 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/girlback" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/startFaceRecog"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/facerec"
-        android:translationZ="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goDad" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/goMainMenu"
