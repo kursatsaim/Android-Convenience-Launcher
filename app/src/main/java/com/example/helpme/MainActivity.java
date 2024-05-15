@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
                         .addToBackStack(null)
                         .commit();
 
-                OpenMomAct();
+                OpenFaceRecog();
 
             }
         });

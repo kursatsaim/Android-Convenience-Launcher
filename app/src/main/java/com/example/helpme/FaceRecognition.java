@@ -753,10 +753,11 @@ public class FaceRecognition extends AppCompatActivity  {
                     reco_name.setText(name);
                     UserName2 = name;
 
-                    if(name.equals("baba"))
+                    if(!name.isEmpty())
                     {
+                        insertToSP(registered,0);
                         if (x == 0) {
-                            Intent intent = new Intent(this, Dad.class);
+                            Intent intent = new Intent(this, Mom.class);
                             startActivity(intent);
                             x++;
                             finish();
@@ -1115,28 +1116,6 @@ public class FaceRecognition extends AppCompatActivity  {
         return UserName;
     }
 
-
-    /*public void addObservera(MyObserver observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void updateName(String newName) {
-
-    }*/
-
-
-    /*public void setUserName2(String newUserName2) {
-        this.UserName2 = newUserName2;
-        notifyObservers(newUserName2); // Call notifyObservers when UserName2 changes
-    }*/
-
-   /* private void notifyObservers(String newUserName2) {
-        for (MyObserver observer : observers) {
-            observer.update(this, newUserName2); // Pass both the observable and the new name
-        }
-    }*/
-
     public void addObserver(MyObserver2 observer) {
         observerz.add(observer);
     }
@@ -1145,7 +1124,7 @@ public class FaceRecognition extends AppCompatActivity  {
         observerz.remove(observer);
     }
 
-    public void onUserNameChanged(String name) { // Kullanıcı adı değiştiğinde observer'ları bilgilendir
+    public void onUserNameChanged(String name) {
         for (MyObserver2 observer : observerz) {
             observer.onUpdate(name);
         }
