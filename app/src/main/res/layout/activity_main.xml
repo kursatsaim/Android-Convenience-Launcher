@@ -126,7 +126,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/study"
+        android:background="@drawable/social"
         android:translationZ="1dp"
         app:layout_constraintBottom_toTopOf="@+id/goDad"
         app:layout_constraintStart_toStartOf="parent" />
@@ -148,7 +148,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="300dp"
-        android:background="@drawable/social"
+        android:background="@drawable/study"
         android:translationZ="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

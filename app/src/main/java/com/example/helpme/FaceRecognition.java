@@ -755,8 +755,9 @@ public class FaceRecognition extends AppCompatActivity  {
 
                     if(!name.isEmpty())
                     {
-                        insertToSP(registered,0);
+
                         if (x == 0) {
+                            insertToSP(registered,0);
                             Intent intent = new Intent(this, Mom.class);
                             startActivity(intent);
                             x++;
@@ -990,7 +991,7 @@ public class FaceRecognition extends AppCompatActivity  {
         editor.putString("map", jsonString);
         //System.out.println("Input josn"+jsonString.toString());
         editor.apply();
-        Toast.makeText(context, "Yüz kaydedildi", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Yüz kaydedildi", Toast.LENGTH_SHORT).show();
     }
 
     //Load Faces from Shared Preferences.Json String to Recognition object
