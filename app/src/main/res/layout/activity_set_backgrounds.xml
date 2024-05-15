@@ -7,103 +7,120 @@
     android:layout_height="match_parent"
     tools:context=".SetBackgroundsAct">
 
+
     <ImageView
         android:id="@+id/backgroundImageview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/girlback" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/girlback"
+        android:scaleType="fitXY"/>
 
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startFaceRecogz"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/unlock"
+        android:translationZ="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goDadz" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/goMainMenu"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="184dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="340dp"
         android:background="@drawable/settings"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goMother"
+        android:id="@+id/goMotherz"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="142dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="160dp"
         android:background="@drawable/sport"
-        android:translationZ="0dp"
-        app:layout_constraintStart_toEndOf="@+id/startFaceRecog"
-        app:layout_constraintTop_toBottomOf="@+id/goChildBoy" />
+        android:translationZ="1dp"
+        app:layout_constraintStart_toEndOf="@+id/startFaceRecogz"
+        app:layout_constraintTop_toBottomOf="@+id/goChildBoyz" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goChildGirl"
+        android:id="@+id/goChildGirlz"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/study"
-        android:translationZ="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/goDad"
+        android:translationZ="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/goDadz"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goChildBoy"
+        android:id="@+id/goChildBoyz"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="168dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="192dp"
         android:background="@drawable/gaming"
-        android:translationZ="0dp"
-        app:layout_constraintStart_toEndOf="@+id/goChildGirl"
+        android:translationZ="1dp"
+        app:layout_constraintStart_toEndOf="@+id/goChildGirlz"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goDad"
+        android:id="@+id/goDadz"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="300dp"
         android:background="@drawable/social"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/YeniProfil3"
+        android:id="@+id/YeniProfil3z"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="74dp"
-        android:translationZ="0dp"
-        app:layout_constraintStart_toEndOf="@+id/startFaceRecog"
-        app:layout_constraintTop_toBottomOf="@+id/quickie" />
+        android:layout_marginTop="72dp"
+        android:background="@drawable/blank_profile"
+        android:translationZ="1dp"
+        app:layout_constraintStart_toEndOf="@+id/startFaceRecogz"
+        app:layout_constraintTop_toBottomOf="@+id/goMainMenu" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/YeniProfil1"
+        android:id="@+id/YeniProfil1z"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="36dp"
-        android:layout_marginBottom="28dp"
-        android:translationZ="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/quickie"
-        app:layout_constraintStart_toEndOf="@+id/goChildGirl" />
+        android:layout_marginBottom="52dp"
+        android:background="@drawable/blank_profile"
+        android:translationZ="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/goMainMenu"
+        app:layout_constraintStart_toEndOf="@+id/goChildGirlz" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/YeniProfil2"
+        android:id="@+id/YeniProfil2z"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="168dp"
         android:layout_marginBottom="32dp"
-        android:translationZ="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/goMother"
-        app:layout_constraintStart_toEndOf="@+id/goDad" />
+        android:background="@drawable/blank_profile"
+        android:translationZ="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/goMotherz"
+        app:layout_constraintStart_toEndOf="@+id/goDadz" />
+
+
 
 
 

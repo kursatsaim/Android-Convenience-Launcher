@@ -1,6 +1,7 @@
 package com.example.helpme;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -29,24 +31,33 @@ import java.lang.Object;
 import java.util.ArrayList;
 
 public class SetBackgroundsAct extends AppCompatActivity {
-    public static final String SHARED_PREF_BACK = "imageURI";
-    public static final String KEY_SHARED_PREF_BACK = "imageURI";
-    public static final String SHARED_PREF_NEWBACK_BOY = "imageURI";
-    public static final String KEY_SHARED_PREF_NEWBACK_BOY = "imageURI";
-    public static final String SHARED_PREF_NEWBACK_GIRL = "imageURI";
-    public static final String KEY_SHARED_PREF_NEWBACK_GIRL = "imageURI";
-    public static final String SHARED_PREF_NEWBACK_DAD = "imageURI";
-    public static final String KEY_SHARED_PREF_NEWBACK_DAD = "imageURI";
-    public static final String SHARED_PREF_NEWBACK_MOM = "imageURI";
-    public static final String KEY_SHARED_PREF_NEWBACK_MOM = "imageURI";
-    public static final String SHARED_PREF_NEWBACK_ACT1 = "imageURI";
-    public static final String KEY_SHARED_PREF_NEWBACK_ACT1 = "imageURI";
-    public static final String SHARED_PREF_NEWBACK_ACT2 = "imageURI";
-    public static final String KEY_SHARED_PREF_NEWBACK_ACT2 = "imageURI";
-    public static final String SHARED_PREF_NEWBACK_ACT3 = "imageURI";
-    public static final String KEY_SHARED_PREF_NEWBACK_ACT3 = "imageURI";
-    public static final String SHARED_PREF_NEWBACK_MAIN = "imageURI";
-    public static final String KEY_SHARED_PREF_NEWBACK_MAIN = "imageURI";
+    public static final String SHARED_PREF_BACK = "initial_background";
+    public static final String KEY_SHARED_PREF_BACK = "background_uri";
+
+    public static final String SHARED_PREF_NEWBACK_DAD = "dad_background";
+    public static final String KEY_SHARED_PREF_NEWBACK_DAD = "KEY_SHARED_PREF_NEWBACK_DAD";
+
+    public static final String SHARED_PREF_NEWBACK_MOM = "mom_background";
+    public static final String KEY_SHARED_PREF_NEWBACK_MOM = "KEY_SHARED_PREF_NEWBACK_MOM";
+
+    public static final String SHARED_PREF_NEWBACK_GIRL = "girl_background";
+    public static final String KEY_SHARED_PREF_NEWBACK_GIRL = "KEY_SHARED_PREF_NEWBACK_GIRL";
+
+    public static final String SHARED_PREF_NEWBACK_BOY = "boy_background";
+    public static final String KEY_SHARED_PREF_NEWBACK_BOY = "KEY_SHARED_PREF_NEWBACK_BOY";
+
+    public static final String SHARED_PREF_NEWBACK_ACT1 = "newact1_background";
+    public static final String KEY_SHARED_PREF_NEWBACK_ACT1 = "KEY_SHARED_PREF_NEWBACK_ACT1";
+
+    public static final String SHARED_PREF_NEWBACK_ACT2 = "newact2_background";
+    public static final String KEY_SHARED_PREF_NEWBACK_ACT2 = "KEY_SHARED_PREF_NEWBACK_ACT2";
+
+    public static final String SHARED_PREF_NEWBACK_ACT3 = "newact3_background";
+    public static final String KEY_SHARED_PREF_NEWBACK_ACT3 = "KEY_SHARED_PREF_NEWBACK_ACT3";
+
+    public static final String SHARED_PREF_NEWBACK_MAIN = "main_background";
+    public static final String KEY_SHARED_PREF_NEWBACK_MAIN = "KEY_SHARED_PREF_NEWBACK_MAIN";
+
 
     private Button dadButon,momButon,girlButon,boyButon,prof1Buton,prof2Buton,prof3Buton,anamenuButon;
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -62,32 +73,21 @@ public class SetBackgroundsAct extends AppCompatActivity {
         LoadSharePrefs();
         imageView = findViewById(R.id.backgroundImageview);
         imageView.setImageURI(imageUri);
-        dadButon = findViewById(R.id.goDad);
-        momButon = findViewById(R.id.goMother);
-        girlButon = findViewById(R.id.goChildGirl);
-        boyButon = findViewById(R.id.goChildBoy);
-        prof1Buton = findViewById(R.id.YeniProfil1);
-        prof2Buton = findViewById(R.id.YeniProfil2);
-        prof3Buton = findViewById(R.id.YeniProfil3);
+        dadButon = findViewById(R.id.goDadz);
+        momButon = findViewById(R.id.goMotherz);
+        girlButon = findViewById(R.id.goChildGirlz);
+        boyButon = findViewById(R.id.goChildBoyz);
+        prof1Buton = findViewById(R.id.YeniProfil1z);
+        prof2Buton = findViewById(R.id.YeniProfil2z);
+        prof3Buton = findViewById(R.id.YeniProfil3z);
         anamenuButon = findViewById(R.id.goMainMenu);
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this,"Arkaplanları değiştirmek için lütfen izni verin.", Toast.LENGTH_LONG).show();
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_MEDIA_IMAGES}, REQUEST_READ_STORAGE_PERMISSION);
-        }
-
-
-        Intent gallery = new Intent(Intent.ACTION_GET_CONTENT);
-        gallery.setType("image/*");
-        startActivityForResult(gallery, RESULT_LOAD_IMAGE);
-
-        Toast.makeText(this,"Hangi profilin arkaplanını değiştirmek istediğinizi seçiniz",Toast.LENGTH_LONG).show();
 
         dadButon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveSharedForDad();
                 OpenDadAct();
+                finish();
             }
         });
 
@@ -96,6 +96,7 @@ public class SetBackgroundsAct extends AppCompatActivity {
             public void onClick(View v) {
                 saveSharedForMom();
                 OpenMomAct();
+                finish();
             }
         });
 
@@ -104,6 +105,7 @@ public class SetBackgroundsAct extends AppCompatActivity {
             public void onClick(View v) {
                 saveSharedForGirl();
                 OpenGirlAct();
+                finish();
             }
         });
 
@@ -112,6 +114,7 @@ public class SetBackgroundsAct extends AppCompatActivity {
             public void onClick(View v) {
                 saveSharedForBoy();
                 OpenBoyAct();
+                finish();
             }
         });
 
@@ -120,6 +123,7 @@ public class SetBackgroundsAct extends AppCompatActivity {
             public void onClick(View v) {
                 saveSharedForProf1();
                 OpenProf1Act();
+                finish();
             }
         });
 
@@ -128,6 +132,7 @@ public class SetBackgroundsAct extends AppCompatActivity {
             public void onClick(View v) {
                 saveSharedForProf2();
                 OpenProf2Act();
+                finish();
             }
         });
 
@@ -136,6 +141,7 @@ public class SetBackgroundsAct extends AppCompatActivity {
             public void onClick(View v) {
                 saveSharedForProf3();
                 OpenProf3Act();
+                finish();
             }
         });
 
@@ -144,8 +150,25 @@ public class SetBackgroundsAct extends AppCompatActivity {
             public void onClick(View v) {
                 saveSharedForMain();
                 OpenMainAct();
+                finish();
             }
         });
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this,"Arkaplanları değiştirmek için lütfen izni verin ve tekrar girin.", Toast.LENGTH_LONG).show();
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_MEDIA_IMAGES}, REQUEST_READ_STORAGE_PERMISSION);
+        }
+
+
+        else if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED) {
+            Intent gallery = new Intent(Intent.ACTION_GET_CONTENT);
+            gallery.setType("image/*");
+            startActivityForResult(gallery, RESULT_LOAD_IMAGE);
+
+            Toast.makeText(this, "Hangi profilin arkaplanını değiştirmek istediğinizi seçiniz", Toast.LENGTH_LONG).show();
+        }
+
+
 
         };
 

@@ -58,6 +58,7 @@ public class NewAct2 extends AppCompatActivity {
 
         act2uyg = new ArrayList<String>();
         launchableApps = new ArrayList<ApplicationInfo>();
+        backgroundpic = findViewById(R.id.imageView);
         packageManager = getPackageManager();
         LoadSharedPrefs();
         LoadSharePrefsForBackground();

@@ -57,6 +57,7 @@ public class ChildBoy extends AppCompatActivity {
         boyuyg = new ArrayList<String>();
         launchableApps = new ArrayList<ApplicationInfo>();
         packageManager = getPackageManager();
+        backgroundpic = findViewById(R.id.BoyBack);
         LoadSharedPrefs();
         LoadSharePrefsForBackground();
         if(imageUri != null)
@@ -111,6 +112,12 @@ public class ChildBoy extends AppCompatActivity {
         RAdapter adapt = new RAdapter(this,mainliste);
         recyclerView.setAdapter(adapt);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     public void getchildboyapps(ArrayList<String> arrayList)

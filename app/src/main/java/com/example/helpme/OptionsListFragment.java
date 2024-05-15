@@ -161,7 +161,9 @@ public class OptionsListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SetBackgroundsAct.class);
+                ((MainActivity) getActivity()).resetToBlankFrag();
                 startActivity(intent);
+
             }
         });
 

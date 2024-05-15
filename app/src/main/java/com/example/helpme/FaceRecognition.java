@@ -95,7 +95,6 @@ import java.util.concurrent.Executors;
 
 public class FaceRecognition extends AppCompatActivity  {
     FaceDetector detector;
-
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     PreviewView previewView;
     ImageView face_preview;

@@ -2,7 +2,7 @@ package com.example.helpme;
 
 import static com.example.helpme.MomChooseAppsLayout.KEY_STRING_REAL_GIRL_APP_LIST;
 import static com.example.helpme.MomChooseAppsLayout.SHARED_PREF;
-import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_GIRL;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_MOM;
 import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_MOM;
 
 import android.app.AppOpsManager;
@@ -70,6 +70,7 @@ public class Mom extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mom);
+        backgroundpic = findViewById(R.id.imageView);
 
         checkperm();
         LoadSharedPrefs();
@@ -290,7 +291,7 @@ public class Mom extends AppCompatActivity {
     private void LoadSharePrefsForBackground()
     {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_MOM, Context.MODE_PRIVATE);
-        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_GIRL, "");
+        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_MOM, "");
         if (!imagePath.isEmpty()) {
             imageUri = Uri.parse(imagePath);
         }

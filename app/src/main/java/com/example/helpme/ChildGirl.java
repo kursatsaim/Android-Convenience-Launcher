@@ -40,6 +40,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,16 +55,17 @@ public class ChildGirl extends AppCompatActivity {
 
     List<ApplicationInfo> launchableApps;
     List<Drawable> icons = new ArrayList<>();
-
     List<String> isimler = new ArrayList<>();
-
     String[] uyglist;
+    String packageNameForBack,imageNameForBack;
     public ArrayList<String> kızuyg;
     PackageManager packageManager;
     private ImageView GetVoiceButton;
     private SpeechRecognizer speechRecognizer;
     ImageView backgroundpic;
-    private Uri imageUri;
+    Uri imageUri;
+    int resID;
+    File imageFile;
 
 
     @Override
@@ -78,6 +80,7 @@ public class ChildGirl extends AppCompatActivity {
         LoadSharedPrefs();
         LoadSharePrefsForBackground();
         GetVoiceButton = findViewById(R.id.mic_speak_iv);
+        backgroundpic = findViewById(R.id.imageView);
 
 
         for (String packageName : kızuyg) {
@@ -200,6 +203,8 @@ public class ChildGirl extends AppCompatActivity {
                         startActivity(intent);
 
                     }
+                    else
+                        Toast.makeText(context,"Söylediğiniz uygulama bu profilde bulunmamaktadır!",Toast.LENGTH_LONG);
                 }
             }
 
@@ -297,7 +302,15 @@ public class ChildGirl extends AppCompatActivity {
         String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_GIRL, "");
         if (!imagePath.isEmpty()) {
             imageUri = Uri.parse(imagePath);
+
+        }else {
+            packageNameForBack = getPackageName();
+            imageNameForBack = "seffaf.png";
+            int resId = getResources().getIdentifier(imageNameForBack, "drawable", packageNameForBack);
+            imageUri = Uri.parse("android.resource://" + packageNameForBack + "/" + resId);
         }
+
     }
 
 }
+

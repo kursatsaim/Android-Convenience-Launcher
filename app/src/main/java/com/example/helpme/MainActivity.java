@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getPermission();
+        LoadSharePrefs();
         textView = (TextView) findViewById(R.id.textView);
         imageView = (ImageView) findViewById(R.id.imageView);
         faceRecogButton = findViewById(R.id.startFaceRecog);
@@ -92,7 +93,11 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         profil2yarat = findViewById(R.id.CreateProfile2);
         profil3yarat = findViewById(R.id.CreateProfile3);
         darkBackground = findViewById(R.id.imageView3);
-        backgroundpic = findViewById(R.id.backgroundImageview);
+        backgroundpic = findViewById(R.id.MainBackground);
+        if(imageUri != null)
+        {
+            backgroundpic.setImageURI(imageUri);
+        }
 
        /* MyObserver observer = new MyObserver() {
             @Override
@@ -559,6 +564,17 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         if (!imagePath.isEmpty()) {
             imageUri = Uri.parse(imagePath);
         }
+    }
+
+    public void resetToBlankFrag()
+    {
+        FragmentManager karen = getSupportFragmentManager();
+
+        karen.beginTransaction()
+                .replace(R.id.EditAppsButtonFrag, Default_Frag.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
     }
 
 }

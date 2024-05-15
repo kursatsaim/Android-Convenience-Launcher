@@ -60,6 +60,7 @@ public class New_Added_Act1 extends AppCompatActivity {
         act1uyg = new ArrayList<String>();
         launchableApps = new ArrayList<ApplicationInfo>();
         packageManager = getPackageManager();
+        backgroundpic = findViewById(R.id.imageView);
         LoadSharedPrefs();
         LoadSharePrefsForBackground();
         if(imageUri != null)

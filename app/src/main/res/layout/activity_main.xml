@@ -16,7 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/seffaf" />
+        app:srcCompat="@drawable/seffaf"
+        android:scaleType="fitXY"/>
 
     <TextClock
         android:id="@+id/textClock2"
@@ -91,7 +92,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="52dp"
         android:background="@drawable/unlock"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goDad" />
 
@@ -102,7 +103,7 @@
         android:layout_marginStart="184dp"
         android:layout_marginTop="340dp"
         android:background="@drawable/settings"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,7 +115,7 @@
         android:layout_marginTop="162dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/sport"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         app:layout_constraintEnd_toEndOf="@+id/EditAppsButtonFrag"
         app:layout_constraintStart_toEndOf="@+id/startFaceRecog"
         app:layout_constraintTop_toBottomOf="@+id/goChildBoy" />
@@ -126,7 +127,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/study"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         app:layout_constraintBottom_toTopOf="@+id/goDad"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -137,7 +138,7 @@
         android:layout_marginStart="168dp"
         android:layout_marginTop="192dp"
         android:background="@drawable/gaming"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         app:layout_constraintStart_toEndOf="@+id/goChildGirl"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -148,7 +149,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="300dp"
         android:background="@drawable/social"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -158,7 +159,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="80dp"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         android:visibility="invisible"
         android:background="@drawable/blank_profile"
         app:layout_constraintStart_toEndOf="@+id/startFaceRecog"
@@ -170,10 +171,10 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="36dp"
-        android:layout_marginBottom="28dp"
-        android:translationZ="0dp"
-        android:visibility="invisible"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/blank_profile"
+        android:translationZ="1dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/quickie"
         app:layout_constraintStart_toEndOf="@+id/goChildGirl"
         tools:visibility="invisible" />
@@ -184,7 +185,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="168dp"
         android:layout_marginBottom="32dp"
-        android:translationZ="0dp"
+        android:translationZ="1dp"
         android:visibility="invisible"
         android:background="@drawable/blank_profile"
         app:layout_constraintBottom_toTopOf="@+id/goMother"

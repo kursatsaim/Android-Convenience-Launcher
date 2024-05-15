@@ -57,7 +57,7 @@ class WeatherData {
                 var lon = location?.longitude
                 var apiUrl = "https://api.weatherapi.com/v1/current.json?key=578847f6544d4d9a968122116241803&q="+ lat + "," + lon + "&aqi=yes&lang=tr"
                 CoroutineScope(Dispatchers.Main).launch {
-                    weatherData.getTemp(apiUrl) // Call getTemp on the passed instance
+                    weatherData.getTemp(apiUrl)
                 }
             }
     }
@@ -77,7 +77,7 @@ class WeatherData {
         icon = "https:" + weatherIcon
         temp = weatherTemp
 
-        
+
         _dataObservers.forEach { it() }
     }
 }
