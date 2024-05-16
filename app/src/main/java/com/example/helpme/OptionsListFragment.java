@@ -120,6 +120,7 @@ public class OptionsListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).SetProfile1Visibility();
+                ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });
 
@@ -127,6 +128,7 @@ public class OptionsListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).SetProfile2Visibility();
+                ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });
 
@@ -134,6 +136,7 @@ public class OptionsListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).SetProfile3Visibility();
+                ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });
 
@@ -142,6 +145,7 @@ public class OptionsListFragment extends Fragment {
             public void onClick(View v) {
                 LoadSharedPrefsAct1();
                 WipeandSaveSharedPrefsAct1();
+                ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });
         removeProf2Button.setOnClickListener(new View.OnClickListener() {
@@ -149,12 +153,14 @@ public class OptionsListFragment extends Fragment {
             public void onClick(View v) {
                 LoadSharedPrefsAct2();
                 WipeandSaveSharedPrefsAct2();
+                ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });removeProf3Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoadSharedPrefsAct3();
                 WipeandSaveSharedPrefsAct3();
+                ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });
         goBackgroundEditor.setOnClickListener(new View.OnClickListener() {

@@ -27,7 +27,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/unlock"
+        android:background="@drawable/sport"
         android:translationZ="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goDadz" />
@@ -49,7 +49,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="168dp"
         android:layout_marginTop="160dp"
-        android:background="@drawable/sport"
+        android:background="@drawable/unlock"
         android:translationZ="1dp"
         app:layout_constraintStart_toEndOf="@+id/startFaceRecogz"
         app:layout_constraintTop_toBottomOf="@+id/goChildBoyz" />

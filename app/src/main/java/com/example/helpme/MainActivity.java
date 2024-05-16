@@ -310,7 +310,14 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
                         .addToBackStack(null)
                         .commit();
 
-                OpenFaceRecog();
+                OpenSportsAct();
+            }
+        });
+        faceRecogButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                OpenSportsFrag();
+                return true;
             }
         });
 
@@ -470,6 +477,20 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
                 .addToBackStack(null)
                 .commit();
     }
+    public void OpenSportsAct(){
+        Intent intent = new Intent(this,SportsProfile.class);
+        startActivity(intent);
+    }
+    public void OpenSportsFrag()
+    {
+        FragmentManager karen = getSupportFragmentManager();
+
+        karen.beginTransaction()
+                .replace(R.id.EditAppsButtonFrag, SportsButtonLongPressFragment.class, null)
+                .setReorderingAllowed(false)
+                .addToBackStack(null)
+                .commit();
+    }
 
     public void OpenOptionsFrag()
     {
@@ -493,6 +514,8 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         Intent intent = new Intent(this,Dad.class);
         startActivity(intent);
 }
+
+
     public void onChromeButtonClick(View v) {
         Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.android.chrome");
         startActivity(launchIntent);

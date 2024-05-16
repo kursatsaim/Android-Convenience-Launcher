@@ -1,10 +1,10 @@
 package com.example.helpme;
 
-import static com.example.helpme.ChooseNewAct3Layout.KEY_STRING_REAL_NEWACT3_APP_LIST;
-import static com.example.helpme.ChooseNewAct3Layout.SHARED_PREF_ACT3;
-import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_ACT3;
-import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_ACT3;
 
+import static com.example.helpme.ChooseSportsLayout.KEY_STRING_REAL_SPORTS_APP_LIST;
+import static com.example.helpme.ChooseSportsLayout.SHARED_PREF_SPORTS;
+import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_SPORTS;
+import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_SPORTS;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -37,14 +37,13 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-    import android.speech.RecognitionListener;
+import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.content.Intent;
 import java.util.Locale;
 
-public class NewAct3 extends AppCompatActivity {
-
+public class SportsProfile extends AppCompatActivity {
 
     @Inject
     Context context;
@@ -56,14 +55,15 @@ public class NewAct3 extends AppCompatActivity {
     List<String> isimler = new ArrayList<>();
 
     String[] uyglist;
-    public ArrayList<String> act3uyg;
+    public ArrayList<String> sportsuyg;
     PackageManager packageManager;
     ImageView backgroundpic;
     private Uri imageUri;
     private ImageView GetVoiceButton;
+
     private SpeechRecognizer speechRecognizer;
 
-    public NewAct3()
+    public SportsProfile()
     {
 
     }
@@ -71,13 +71,14 @@ public class NewAct3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_act3);
+        setContentView(R.layout.activity_sports_profile);
 
-        act3uyg = new ArrayList<String>();
+        sportsuyg = new ArrayList<String>();
         launchableApps = new ArrayList<ApplicationInfo>();
         packageManager = getPackageManager();
         backgroundpic = findViewById(R.id.imageView);
         GetVoiceButton = findViewById(R.id.mic_speak_iv);
+
         LoadSharedPrefs();
         LoadSharePrefsForBackground();
         if(imageUri != null)
@@ -85,7 +86,7 @@ public class NewAct3 extends AppCompatActivity {
             backgroundpic.setImageURI(imageUri);
         }
 
-        for (String packageName : act3uyg) {
+        for (String packageName : sportsuyg) {
             try {
                 ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
                 launchableApps.add(applicationInfo);
@@ -94,7 +95,7 @@ public class NewAct3 extends AppCompatActivity {
             }
         }
 
-        RecyclerView recyclerView = findViewById(R.id.act3recview);
+        RecyclerView recyclerView = findViewById(R.id.sportsrecview);
 
         uyglist = new String[launchableApps.size()];
 
@@ -110,6 +111,7 @@ public class NewAct3 extends AppCompatActivity {
         {
             ApplicationInfo applicationInfo = launchableApps.get(i);
             Drawable drawable = applicationInfo.loadIcon(getPackageManager());
+            //Drawable drawable = applicationInfo.loadUnbadgedIcon(getPackageManager());
             icons.add(drawable);
         }
 
@@ -133,7 +135,7 @@ public class NewAct3 extends AppCompatActivity {
 
         GetVoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 checkAudioPermission();
                 startSpeechToText();
             }
@@ -141,35 +143,35 @@ public class NewAct3 extends AppCompatActivity {
 
     }
 
-    public void getact3apps(ArrayList<String> arrayList)
+    public void getsportsapps(ArrayList<String> arrayList)
     {
-        act3uyg = arrayList;
+        sportsuyg = arrayList;
     }
 
     public void LoadSharedPrefs()
     {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_ACT3, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_SPORTS, Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString(KEY_STRING_REAL_NEWACT3_APP_LIST,null);
+        String json = sharedPreferences.getString(KEY_STRING_REAL_SPORTS_APP_LIST,null);
         Type type = new TypeToken<ArrayList<String>>() {}.getType();
 
-        act3uyg = gson.fromJson(json,type);
-        if(act3uyg == null)
+        sportsuyg = gson.fromJson(json,type);
+        if(sportsuyg == null)
         {
-            act3uyg = new ArrayList<String>();
+            sportsuyg = new ArrayList<String>();
         }
     }
 
     private void LoadSharePrefsForBackground()
     {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_ACT3, Context.MODE_PRIVATE);
-        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_ACT3, "");
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_SPORTS, Context.MODE_PRIVATE);
+        String imagePath = sharedPreferences.getString(KEY_SHARED_PREF_NEWBACK_SPORTS, "");
         if (!imagePath.isEmpty()) {
             imageUri = Uri.parse(imagePath);
         }
     }
 
-    public Context getContextAct3() {
+    public Context getContextSports() {
         return this;
     }
 
@@ -210,7 +212,7 @@ public class NewAct3 extends AppCompatActivity {
                 if (result != null) {
 
                     if (isimler.contains(result.get(0))) {
-                        Intent intent = getPackageManager().getLaunchIntentForPackage(act3uyg.get(isimler.indexOf(result.get(0))));
+                        Intent intent = getPackageManager().getLaunchIntentForPackage(sportsuyg.get(isimler.indexOf(result.get(0))));
                         startActivity(intent);
 
                     } else
@@ -250,6 +252,5 @@ public class NewAct3 extends AppCompatActivity {
             }
         }
     }
-
 
 }

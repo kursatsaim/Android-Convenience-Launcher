@@ -10,6 +10,8 @@ import static com.example.helpme.ChooseNewAct2Layout.KEY_STRING_REAL_NEWACT2_APP
 import static com.example.helpme.ChooseNewAct2Layout.SHARED_PREF_ACT2;
 import static com.example.helpme.ChooseNewAct3Layout.KEY_STRING_REAL_NEWACT3_APP_LIST;
 import static com.example.helpme.ChooseNewAct3Layout.SHARED_PREF_ACT3;
+import static com.example.helpme.ChooseSportsLayout.KEY_STRING_REAL_SPORTS_APP_LIST;
+import static com.example.helpme.ChooseSportsLayout.SHARED_PREF_SPORTS;
 
 import android.content.Context;
 import android.content.Intent;
@@ -41,11 +43,13 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
     NewAct1List newAct1List;
     NewAct2List newAct2List;
     NewAct3List newAct3List;
+    SportsList sportsList;
     ChildBoy childBoy = new ChildBoy();
     ChildGirl childGirl = new ChildGirl();
     New_Added_Act1 newAddedAct1 = new New_Added_Act1();
     NewAct2 newAct2 = new NewAct2();
     NewAct3 newAct3 = new NewAct3();
+    SportsProfile sportsProfile = new SportsProfile();
     int a = 0,CurrentPosition,ViewAmount;
 
     public RAdapter(Context context, List<PicsAndAppNames> picsAndAppNames) {
@@ -56,6 +60,7 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
         newAct1List = new NewAct1List(context);
         newAct2List = new NewAct2List(context);
         newAct3List = new NewAct3List(context);
+        sportsList = new SportsList(context);
 
         PackageManager pm = context.getPackageManager();
 
@@ -243,6 +248,20 @@ public class RAdapter extends RecyclerView.Adapter<RAdapter.Holderz> {
             SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_ACT3,Context.MODE_PRIVATE);
             Gson gson = new Gson();
             String json = sharedPreferences.getString(KEY_STRING_REAL_NEWACT3_APP_LIST,null);
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+
+            applist = gson.fromJson(json,type);
+
+            if(applist == null)
+            {
+                applist = new ArrayList<String>();
+            }
+        }
+        else if (aClass == sportsProfile.getContextSports().getClass())
+        {
+            SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_SPORTS,Context.MODE_PRIVATE);
+            Gson gson = new Gson();
+            String json = sharedPreferences.getString(KEY_STRING_REAL_SPORTS_APP_LIST,null);
             Type type = new TypeToken<ArrayList<String>>() {}.getType();
 
             applist = gson.fromJson(json,type);

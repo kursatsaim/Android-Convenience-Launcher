@@ -36,6 +36,8 @@ public class SetBackgroundsAct extends AppCompatActivity {
 
     public static final String SHARED_PREF_NEWBACK_DAD = "dad_background";
     public static final String KEY_SHARED_PREF_NEWBACK_DAD = "KEY_SHARED_PREF_NEWBACK_DAD";
+    public static final String SHARED_PREF_NEWBACK_SPORTS = "sports_background";
+    public static final String KEY_SHARED_PREF_NEWBACK_SPORTS = "KEY_SHARED_PREF_NEWBACK_SPORTS";
 
     public static final String SHARED_PREF_NEWBACK_MOM = "mom_background";
     public static final String KEY_SHARED_PREF_NEWBACK_MOM = "KEY_SHARED_PREF_NEWBACK_MOM";
@@ -59,7 +61,7 @@ public class SetBackgroundsAct extends AppCompatActivity {
     public static final String KEY_SHARED_PREF_NEWBACK_MAIN = "KEY_SHARED_PREF_NEWBACK_MAIN";
 
 
-    private Button dadButon,momButon,girlButon,boyButon,prof1Buton,prof2Buton,prof3Buton,anamenuButon;
+    private Button dadButon,momButon,girlButon,boyButon,prof1Buton,prof2Buton,prof3Buton,anamenuButon,sportsButon;
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int REQUEST_READ_STORAGE_PERMISSION = 2;
     private ImageView imageView;
@@ -81,6 +83,7 @@ public class SetBackgroundsAct extends AppCompatActivity {
         prof2Buton = findViewById(R.id.YeniProfil2z);
         prof3Buton = findViewById(R.id.YeniProfil3z);
         anamenuButon = findViewById(R.id.goMainMenu);
+        sportsButon = findViewById(R.id.startFaceRecogz);
 
         dadButon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +153,15 @@ public class SetBackgroundsAct extends AppCompatActivity {
             public void onClick(View v) {
                 saveSharedForMain();
                 OpenMainAct();
+                finish();
+            }
+        });
+
+        sportsButon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveSharedForSports();
+                OpenSportsAct();
                 finish();
             }
         });
@@ -274,6 +286,15 @@ public class SetBackgroundsAct extends AppCompatActivity {
         editor.apply();
     }
 
+    private void saveSharedForSports()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NEWBACK_SPORTS,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =sharedPreferences.edit();
+        path = imageUri.getEncodedPath();
+        editor.putString(KEY_SHARED_PREF_NEWBACK_SPORTS, imageUri.toString());
+        editor.apply();
+    }
+
     public void OpenMomAct(){
         Toast.makeText(this,"Arkaplan başarıyla değiştirildi!",Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Mom.class);
@@ -313,6 +334,11 @@ public class SetBackgroundsAct extends AppCompatActivity {
     public void OpenMainAct(){
         Toast.makeText(this,"Arkaplan başarıyla değiştirildi!",Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void OpenSportsAct(){
+        Toast.makeText(this,"Arkaplan başarıyla değiştirildi!",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, SportsProfile.class);
         startActivity(intent);
     }
 
