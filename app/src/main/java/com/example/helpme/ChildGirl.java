@@ -139,7 +139,6 @@ public class ChildGirl extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkAudioPermission();
-                GetVoiceButton.setColorFilter(ContextCompat.getColor(ChildGirl.this, R.color.mic_enabled_color));
                 startSpeechToText();
             }
         });
@@ -186,7 +185,6 @@ public class ChildGirl extends AppCompatActivity {
 
             @Override
             public void onEndOfSpeech() {
-                GetVoiceButton.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.mic_disabled_color));
             }
 
             @Override
@@ -204,7 +202,7 @@ public class ChildGirl extends AppCompatActivity {
 
                     }
                     else
-                        Toast.makeText(context,"Söylediğiniz uygulama bu profilde bulunmamaktadır!",Toast.LENGTH_LONG);
+                        Toast.makeText(context,"Söylediğiniz uygulama bu profilde bulunmamaktadır!",Toast.LENGTH_LONG).show();
                 }
             }
 

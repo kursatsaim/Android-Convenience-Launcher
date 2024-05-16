@@ -4,13 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_DAD;
@@ -18,6 +24,14 @@ import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_DAD;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.content.Intent;
+import android.widget.Toast;
+
+import java.util.Locale;
+import javax.inject.Inject;
 
 
 public class Dad extends AppCompatActivity {
@@ -33,7 +47,8 @@ public class Dad extends AppCompatActivity {
     String[] uyglist;
     ImageView backgroundpic;
     private Uri imageUri;
-
+    @Inject
+    Context context;
 
 
     @Override
@@ -41,7 +56,6 @@ public class Dad extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dad);
         backgroundpic = findViewById(R.id.imageView);
-
         launchableApps = getLaunchableApps();
 
         sil("com.google.android.googlequicksearchbox");
@@ -87,6 +101,7 @@ public class Dad extends AppCompatActivity {
         recyclerView.setAdapter(adapt);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
     }
 
     private void LoadSharePrefsForBackground()
@@ -122,6 +137,10 @@ public class Dad extends AppCompatActivity {
             }
         }
     }
+
+
+
+
 
 
 }
