@@ -11,13 +11,25 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/CreateProfile1"
+        android:id="@+id/goBackgroundPage"
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="372dp"
         android:background="@drawable/bg_view_grey_oval"
-        android:text="Yeni profil oluştur/gizle (üstte)"
+        android:text="Arkaplan resimlerini değiştir"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/changeBUttonSymbol"
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="420dp"
+        android:background="@drawable/bg_view_grey_oval"
+        android:text="Profil sembolünü değiştir."
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +39,7 @@
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="84dp"
         android:background="@drawable/bg_view_grey_oval"
         android:text="Yeni profil oluştur/gizle (aşağıda)"
         android:textAllCaps="false"
@@ -35,25 +47,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/CreateProfile2"
-        android:layout_width="218dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="196dp"
-        android:background="@drawable/bg_view_grey_oval"
-        android:text="Yeni profil oluştur/gizle (sağda)"
-        android:textAllCaps="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/RemoveProf1"
+        android:id="@+id/CreateProfile1"
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="180dp"
         android:background="@drawable/bg_view_grey_oval"
-        android:text="Üstteki Profili Sil"
+        android:text="Yeni profil oluştur/gizle (üstte)"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +63,7 @@
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="276dp"
         android:background="@drawable/bg_view_grey_oval"
         android:text="Sağdaki Profili Sil"
         android:textAllCaps="false"
@@ -75,7 +75,7 @@
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginTop="324dp"
         android:background="@drawable/bg_view_grey_oval"
         android:text="Aşağıdaki Profili Sil"
         android:textAllCaps="false"
@@ -83,13 +83,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goBackgroundPage"
+        android:id="@+id/RemoveProf1"
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="436dp"
+        android:layout_marginTop="228dp"
         android:background="@drawable/bg_view_grey_oval"
-        android:text="Arkaplan resimlerini değiştir"
+        android:text="Üstteki Profili Sil"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/CreateProfile2"
+        android:layout_width="218dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="132dp"
+        android:background="@drawable/bg_view_grey_oval"
+        android:text="Yeni profil oluştur/gizle (sağda)"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

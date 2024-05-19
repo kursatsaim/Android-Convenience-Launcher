@@ -5,16 +5,19 @@ import static com.example.helpme.SetBackgroundsAct.KEY_SHARED_PREF_NEWBACK_MAIN;
 import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_DAD;
 import static com.example.helpme.SetBackgroundsAct.SHARED_PREF_NEWBACK_MAIN;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -43,8 +46,6 @@ import kotlin.Unit;
 
 
 public class MainActivity extends AppCompatActivity implements MyObserver2  {
-
-    //commitlemek için rastgele ekledim bu yazıyı silebilirsin
     private Button kızbuton;
     private Button profil1buton;
     private Button profil2buton;
@@ -76,7 +77,9 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
     MainActivity mainActivity;
     ConstraintLayout LayoutMain;
     private Uri imageUri;
-
+    int[] symbols = {R.drawable.banking, R.drawable.gaming, R.drawable.jojoost, R.drawable.kidsmode, R.drawable.netflixnchill,
+            R.drawable.unlock, R.drawable.social, R.drawable.sport, R.drawable.study, R.drawable.travel,
+            R.drawable.vacation, R.drawable.work};
 
 
     @Override
@@ -132,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
+
 
         kızbuton = (Button) findViewById(R.id.goChildGirl);
 
@@ -600,4 +604,18 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
                 .commit();
     }
 
+    public void showSymbolsUI() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ikon seçiniz");
+
+        String[] imageNames = {"Banka", "Oyun", "Müzik", "Çocuk", "İzleme", "Şifreli", "Sosyal Medya", "Spor", "Ders", "Keşif", "Tatil", "İş"};
+        builder.setItems(imageNames, (dialog, choice) -> {
+            erkekbuton.setBackground(ContextCompat.getDrawable(this, symbols[choice]));
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 }
+

@@ -42,7 +42,7 @@ public class OptionsListFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button buttonUp, buttonDown, buttonRight,removeProf1Button,removeProf2Button,removeProf3Button,mainUp,mainDown,mainRight;
+    private Button buttonUp, buttonDown, buttonRight,removeProf1Button,removeProf2Button,removeProf3Button,goChangeSymbolButton;
     int Prof1Vis, Prof2Vis, Prof3Vis;
     MainActivity mainActivity;
     public Activity activity;
@@ -107,6 +107,7 @@ public class OptionsListFragment extends Fragment {
         buttonRight = v.findViewById(R.id.CreateProfile2);
         buttonDown = v.findViewById(R.id.CreateProfile3);
         goBackgroundEditor = v.findViewById(R.id.goBackgroundPage);
+        goChangeSymbolButton = v.findViewById(R.id.changeBUttonSymbol);
         removeProf1Button = v.findViewById(R.id.RemoveProf1);
         removeProf2Button = v.findViewById(R.id.RemoveProf2);
         removeProf3Button = v.findViewById(R.id.RemoveProf3);
@@ -170,6 +171,14 @@ public class OptionsListFragment extends Fragment {
                 ((MainActivity) getActivity()).resetToBlankFrag();
                 startActivity(intent);
 
+            }
+        });
+
+        goChangeSymbolButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).showSymbolsUI();
+                ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });
 
