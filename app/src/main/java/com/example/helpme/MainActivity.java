@@ -226,6 +226,14 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             }
         });
 
+        bababuton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                OpenDadFrag();
+                return true;
+            }
+        });
+
         profil1buton = (Button) findViewById(R.id.YeniProfil1);
         Prof1Vis = profil1buton.getVisibility();
 
@@ -326,35 +334,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
             }
         });
 
-        profil1yarat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(profil1buton.getVisibility() == View.INVISIBLE)
-                    profil1buton.setVisibility(View.VISIBLE);
-                else
-                    profil1buton.setVisibility(View.INVISIBLE);
-            }
-        });
 
-        profil2yarat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(profil2buton.getVisibility() == View.INVISIBLE)
-                    profil2buton.setVisibility(View.VISIBLE);
-                else
-                    profil2buton.setVisibility(View.INVISIBLE);
-            }
-        });
-
-        profil3yarat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(profil3buton.getVisibility() == View.INVISIBLE)
-                    profil3buton.setVisibility(View.VISIBLE);
-                else
-                    profil3buton.setVisibility(View.INVISIBLE);
-            }
-        });
 
         textClock = findViewById(R.id.textClock2);
         textClock.getFormat24Hour();
@@ -519,6 +499,16 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         Intent intent = new Intent(this,Dad.class);
         startActivity(intent);
 }
+    public void OpenDadFrag()
+    {
+        FragmentManager karen = getSupportFragmentManager();
+
+        karen.beginTransaction()
+                .replace(R.id.EditAppsButtonFrag, DadButtonLongPressFragment.class, null)
+                .setReorderingAllowed(false)
+                .addToBackStack(null)
+                .commit();
+    }
 
 
     public void onChromeButtonClick(View v) {

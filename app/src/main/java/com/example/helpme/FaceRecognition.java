@@ -108,7 +108,6 @@ public class FaceRecognition extends AppCompatActivity  {
     boolean start=true,flipX=false;
     Context context=FaceRecognition.this;
     int cam_face=CameraSelector.LENS_FACING_FRONT; //Default Back Camera
-
     int[] intValues;
     int inputSize=112;  //Input size for model
     boolean isModelQuantized=false;

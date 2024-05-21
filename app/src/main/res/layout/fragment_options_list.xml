@@ -31,8 +31,10 @@
         android:background="@drawable/bg_view_grey_oval"
         android:text="Profil sembolünü değiştir."
         android:textAllCaps="false"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/CreateProfile3"

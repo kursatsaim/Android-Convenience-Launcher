@@ -12,19 +12,19 @@
         android:id="@+id/MainBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/seffaf"
-        android:scaleType="fitXY"/>
+        app:srcCompat="@drawable/seffaf" />
 
     <TextClock
         android:id="@+id/textClock2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="76dp"
         android:fontFamily="casual"
         android:textColor="#FF5733"
         android:textSize="85sp"
@@ -37,13 +37,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="613dp"
         android:fontFamily="sans-serif"
         android:textColor="#67B6F4"
         android:textSize="30sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goMother" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
@@ -52,13 +52,13 @@
         android:layout_height="150dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="581dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/seffaf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.72"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/goMother" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/EditAppsButtonFrag"
@@ -76,8 +76,8 @@
         android:id="@+id/editTextDate"
         android:layout_width="280dp"
         android:layout_height="50dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -86,22 +86,36 @@
         app:layout_constraintTop_toTopOf="@+id/EditAppsButtonFrag" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/startFaceRecog"
+        android:id="@+id/goChildGirl"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="255dp"
+        android:layout_marginEnd="291dp"
+        android:background="@drawable/social"
+        android:translationZ="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startFaceRecog"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="364dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/sport"
         android:translationZ="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goDad" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/quickie"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="184dp"
-        android:layout_marginTop="340dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="400dp"
         android:background="@drawable/settings"
         android:translationZ="1dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,35 +125,14 @@
         android:id="@+id/goMother"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="162dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="252dp"
+        android:layout_marginEnd="164dp"
         android:background="@drawable/unlock"
         android:translationZ="1dp"
-        app:layout_constraintEnd_toEndOf="@+id/EditAppsButtonFrag"
-        app:layout_constraintStart_toEndOf="@+id/startFaceRecog"
-        app:layout_constraintTop_toBottomOf="@+id/goChildBoy" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goChildGirl"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/social"
-        android:translationZ="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/goDad"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goChildBoy"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="192dp"
-        android:background="@drawable/gaming"
-        android:translationZ="1dp"
-        app:layout_constraintStart_toEndOf="@+id/goChildGirl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -147,9 +140,12 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="364dp"
+        android:layout_marginEnd="291dp"
         android:background="@drawable/study"
         android:translationZ="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -157,85 +153,57 @@
         android:id="@+id/YeniProfil3"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="476dp"
+        android:layout_marginEnd="23dp"
+        android:background="@drawable/blank_profile"
         android:translationZ="1dp"
         android:visibility="invisible"
-        android:background="@drawable/blank_profile"
-        app:layout_constraintStart_toEndOf="@+id/startFaceRecog"
-        app:layout_constraintTop_toBottomOf="@+id/quickie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="invisible" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/YeniProfil1"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="476dp"
         android:background="@drawable/blank_profile"
         android:translationZ="1dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/quickie"
-        app:layout_constraintStart_toEndOf="@+id/goChildGirl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="invisible" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/YeniProfil2"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="168dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="476dp"
+        android:layout_marginEnd="164dp"
+        android:background="@drawable/blank_profile"
         android:translationZ="1dp"
         android:visibility="invisible"
-        android:background="@drawable/blank_profile"
-        app:layout_constraintBottom_toTopOf="@+id/goMother"
-        app:layout_constraintStart_toEndOf="@+id/goDad"
-        tools:visibility="invisible" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/CreateProfile3"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="376dp"
-        android:background="@drawable/bg_view_grey_oval"
-        android:text="Yeni profil oluştur/sil (aşağıda)"
-        android:textAllCaps="false"
-        android:translationZ="999dp"
-        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="invisible" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/CreateProfile2"
-        android:layout_width="190dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="424dp"
-        android:background="@drawable/bg_view_grey_oval"
-        android:text="Yeni profil oluştur/sil (sağda)"
-        android:textAllCaps="false"
-        android:translationZ="999dp"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="invisible" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/CreateProfile1"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="472dp"
-        android:background="@drawable/bg_view_grey_oval"
-        android:text="Yeni profil oluştur/sil (üstte)"
-        android:textAllCaps="false"
-        android:translationZ="999dp"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="invisible" />
+        android:id="@+id/goChildBoy"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="252dp"
+        android:layout_marginEnd="23dp"
+        android:background="@drawable/gaming"
+        android:translationZ="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
