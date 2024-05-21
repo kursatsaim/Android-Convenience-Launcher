@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#7F000000"
     tools:context=".GirlButtonLongPressFrag">
 
     <androidx.appcompat.widget.AppCompatButton
@@ -14,6 +15,22 @@
         android:layout_marginTop="124dp"
         android:background="#23025C"
         android:text="       Uygulamaları Değiştir"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textColorHighlight="#23025C"
+        android:textColorLink="#23025C"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonimge"
+        android:layout_width="164dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="84dp"
+        android:background="#23025C"
+        android:text="                Simge değiştir"
         android:textAlignment="viewStart"
         android:textColor="@color/white"
         android:textColorHighlight="#23025C"

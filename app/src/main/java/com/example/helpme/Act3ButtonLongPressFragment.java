@@ -25,7 +25,7 @@ public class Act3ButtonLongPressFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    Button button;
+    Button button,butonsimge;
     AdapterChooseAppsForAct3 adapt;
 
     public Act3ButtonLongPressFragment() {
@@ -66,6 +66,7 @@ public class Act3ButtonLongPressFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_act3_button_long_press, container, false);
         adapt = new AdapterChooseAppsForAct3();
         button = view.findViewById(R.id.button);
+        butonsimge = view.findViewById(R.id.buttonimge);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +76,14 @@ public class Act3ButtonLongPressFragment extends Fragment {
                 if (getActivity()!= null) {
                     getFragmentManager().popBackStackImmediate();
                 }
+            }
+        });
+
+        butonsimge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).showSymbolsUIForAct3();
+                ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });
 

@@ -177,7 +177,7 @@ public class OptionsListFragment extends Fragment {
         goChangeSymbolButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) getActivity()).showSymbolsUI();
+                ((MainActivity) getActivity()).showSymbolsUIForBoy();
                 ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });

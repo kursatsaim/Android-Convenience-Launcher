@@ -25,7 +25,7 @@ public class BoyButtonLongPressFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-     Button button;
+     Button button,butonsimge;
     AdapterChooseAppsForBoy adapterChooseAppsForBoy;
 
 
@@ -65,6 +65,7 @@ public class BoyButtonLongPressFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_boy_button_long_press, container, false);
         button = view.findViewById(R.id.button);
+        butonsimge = view.findViewById(R.id.buttonimge);
         adapterChooseAppsForBoy = new AdapterChooseAppsForBoy();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +77,14 @@ public class BoyButtonLongPressFragment extends Fragment {
                 }
             }
         });
-        // Inflate the layout for this fragment
+
+        butonsimge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).showSymbolsUIForBoy();
+                ((MainActivity) getActivity()).resetToBlankFrag();
+            }
+        });
         return view;
     }
 }

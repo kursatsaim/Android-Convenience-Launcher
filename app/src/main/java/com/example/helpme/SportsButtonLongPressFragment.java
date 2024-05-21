@@ -25,7 +25,7 @@ public class SportsButtonLongPressFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    Button button;
+    Button button,butonsimge;
     AdapterChooseAppsForSports adapt;
 
     public SportsButtonLongPressFragment() {
@@ -65,6 +65,7 @@ public class SportsButtonLongPressFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sports_button_long_press, container, false);
 
+        butonsimge = view.findViewById(R.id.buttonimge);
         button = view.findViewById(R.id.button);
         adapt = new AdapterChooseAppsForSports();
 
@@ -76,6 +77,14 @@ public class SportsButtonLongPressFragment extends Fragment {
                 if (getActivity()!= null) {
                     getFragmentManager().popBackStackImmediate();
                 }
+            }
+        });
+
+        butonsimge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).showSymbolsUIForSports();
+                ((MainActivity) getActivity()).resetToBlankFrag();
             }
         });
 

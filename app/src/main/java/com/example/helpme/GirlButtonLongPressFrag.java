@@ -22,7 +22,7 @@ public class GirlButtonLongPressFrag extends Fragment{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    Button button;
+    Button button,butonsimge;
     private String mParam1;
     private String mParam2;
     AdapterChooseAppsGirl adapterChooseAppsGirl;
@@ -63,6 +63,7 @@ public class GirlButtonLongPressFrag extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_girl_button_long_press, container, false);
         button = view.findViewById(R.id.button);
+        butonsimge = view.findViewById(R.id.buttonimge);
         adapterChooseAppsGirl = new AdapterChooseAppsGirl();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +75,15 @@ public class GirlButtonLongPressFrag extends Fragment{
                 }
             }
         });
+
+        butonsimge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).showSymbolsUIForGirl();
+                ((MainActivity) getActivity()).resetToBlankFrag();
+            }
+        });
+
         return view;
     }
 

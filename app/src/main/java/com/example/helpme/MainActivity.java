@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         {
             backgroundpic.setImageURI(imageUri);
         }
+        //commit
 
        /* MyObserver observer = new MyObserver() {
             @Override
@@ -603,8 +604,7 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
                 .addToBackStack(null)
                 .commit();
     }
-
-    public void showSymbolsUI() {
+    public void showSymbolsUIForBoy() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Ikon seçiniz");
 
@@ -616,6 +616,86 @@ public class MainActivity extends AppCompatActivity implements MyObserver2  {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+    public void showSymbolsUIForGirl() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ikon seçiniz");
 
+        String[] imageNames = {"Banka", "Oyun", "Müzik", "Çocuk", "İzleme", "Şifreli", "Sosyal Medya", "Spor", "Ders", "Keşif", "Tatil", "İş"};
+        builder.setItems(imageNames, (dialog, choice) -> {
+            kızbuton.setBackground(ContextCompat.getDrawable(this, symbols[choice]));
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }public void showSymbolsUIForDad() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ikon seçiniz");
+
+        String[] imageNames = {"Banka", "Oyun", "Müzik", "Çocuk", "İzleme", "Şifreli", "Sosyal Medya", "Spor", "Ders", "Keşif", "Tatil", "İş"};
+        builder.setItems(imageNames, (dialog, choice) -> {
+            bababuton.setBackground(ContextCompat.getDrawable(this, symbols[choice]));
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }public void showSymbolsUIForMom() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ikon seçiniz");
+
+        String[] imageNames = {"Banka", "Oyun", "Müzik", "Çocuk", "İzleme", "Şifreli", "Sosyal Medya", "Spor", "Ders", "Keşif", "Tatil", "İş"};
+        builder.setItems(imageNames, (dialog, choice) -> {
+            annebuton.setBackground(ContextCompat.getDrawable(this, symbols[choice]));
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }public void showSymbolsUIForSports() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ikon seçiniz");
+
+        String[] imageNames = {"Banka", "Oyun", "Müzik", "Çocuk", "İzleme", "Şifreli", "Sosyal Medya", "Spor", "Ders", "Keşif", "Tatil", "İş"};
+        builder.setItems(imageNames, (dialog, choice) -> {
+            faceRecogButton.setBackground(ContextCompat.getDrawable(this, symbols[choice]));
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    public void showSymbolsUIForAct1() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ikon seçiniz");
+
+        String[] imageNames = {"Banka", "Oyun", "Müzik", "Çocuk", "İzleme", "Şifreli", "Sosyal Medya", "Spor", "Ders", "Keşif", "Tatil", "İş"};
+        builder.setItems(imageNames, (dialog, choice) -> {
+            profil1buton.setBackground(ContextCompat.getDrawable(this, symbols[choice]));
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    public void showSymbolsUIForAct2() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ikon seçiniz");
+
+        String[] imageNames = {"Banka", "Oyun", "Müzik", "Çocuk", "İzleme", "Şifreli", "Sosyal Medya", "Spor", "Ders", "Keşif", "Tatil", "İş"};
+        builder.setItems(imageNames, (dialog, choice) -> {
+            profil2buton.setBackground(ContextCompat.getDrawable(this, symbols[choice]));
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    public void showSymbolsUIForAct3() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Ikon seçiniz");
+
+        String[] imageNames = {"Banka", "Oyun", "Müzik", "Çocuk", "İzleme", "Şifreli", "Sosyal Medya", "Spor", "Ders", "Keşif", "Tatil", "İş"};
+        builder.setItems(imageNames, (dialog, choice) -> {
+            profil3buton.setBackground(ContextCompat.getDrawable(this, symbols[choice]));
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }
 
